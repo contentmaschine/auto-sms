@@ -1,9 +1,7 @@
 import morse_translator as mt
 import RPi.GPIO as gpio
 import time
-import sys
-import subprocess as sp
-import os
+import atexit
 import concurrent.futures as cf
 
 
@@ -36,7 +34,6 @@ def string_to_led(message: str, pin_number: int):
 
             if symbol == " ":
                 time.sleep(time_space)
-                gpio.cleanup()
 
         time.sleep(time_word)
 
@@ -46,3 +43,5 @@ executor = cf.ThreadPoolExecutor(max_workers=3)
 executor.submit(string_to_led, "WE", 5)
 executor.submit(string_to_led, "DO", 6)
 executor.submit(string_to_led, "IT", 26)
+
+atexit.register(gpio.cleanup())
