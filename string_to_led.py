@@ -44,4 +44,4 @@ executor.submit(string_to_led, "WE", 5)
 executor.submit(string_to_led, "DO", 6)
 executor.submit(string_to_led, "IT", 26)
 
-atexit.register(gpio.cleanup())
+atexit.register(gpio.cleanup)
