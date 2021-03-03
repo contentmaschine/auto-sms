@@ -1,7 +1,6 @@
 import morse_translator as mt
 import RPi.GPIO as gpio
 import time
-import concurrent.futures as cf
 
 
 def string_to_led(message: str, pin_number: int):
@@ -35,10 +34,3 @@ def string_to_led(message: str, pin_number: int):
                 time.sleep(time_space)
 
         time.sleep(time_word)
-
-
-
-executor = cf.ThreadPoolExecutor(max_workers=3)
-executor.submit(string_to_led, "WE", 5)
-executor.submit(string_to_led, "DO", 6)
-executor.submit(string_to_led, "IT", 26)
