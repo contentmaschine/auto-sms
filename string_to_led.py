@@ -4,6 +4,7 @@ import time
 import sys
 import subprocess as sp
 import os
+import concurrent.futures as cf
 
 
 def string_to_led(message: str, pin_number: int):
@@ -40,15 +41,9 @@ def string_to_led(message: str, pin_number: int):
 
 
 try:
-    arg_list = sys.argv
-    del arg_list[0]
-    if len(arg_list) % 2 != 0:
-        raise ValueError("too many/little inputs!")
-    pair_count = int(len(arg_list) / 2)
-    for i in range(pair_count):
-        sp.run(
-            ["python3", os.path.join(os.getcwd(), "string_to_led.py"), str(arg_list[2 * i]), str(arg_list[2 * i + 1])])
-        time.sleep(5)
+    executor = cf.ThreadPoolExecutor(max_workers=3)
+    a = executor.submit(string_to_led, "SOS", 5)
+    b = executor.submit(string_to_led, "ATA", 6)
 
 finally:
     gpio.cleanup()
