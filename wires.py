@@ -1,9 +1,14 @@
-import gpiozero as gpio0
+import gpiozero
 import time
 
-right_wires_connected = gpio0.Button(0).is_pressed
+
+correct_pin = 17
+
+button = gpiozero.Button(correct_pin)
 
 while True:
-    if right_wires_connected is False:
-        print("STRIKE!")
+    if button.is_pressed:
+        print("connected")
+    else:
+        print("not connected")
     time.sleep(1)
