@@ -8,7 +8,7 @@ def start_morse(words_and_pins: dict):
     for word in words_and_pins:
         pin = words_and_pins.get(word)
         # to handle equal keys, which don't get recognised outside of a list
-        if type(pin) == list:
+        if isinstance(pin, list):
             for element in pin:
                 executor.submit(string_to_led, word, element)
         else:
