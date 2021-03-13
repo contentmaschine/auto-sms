@@ -3,7 +3,7 @@ import concurrent.futures
 
 
 def start_morse(words_and_pins: dict):
-    n = len(words_and_pins)
+    n = 3
     executor = concurrent.futures.ThreadPoolExecutor(max_workers=n)
     for word in words_and_pins:
         pin = words_and_pins.get(word)
