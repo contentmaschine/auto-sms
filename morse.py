@@ -1,6 +1,16 @@
-import morse_translator as mt
+import morse_translator
 import RPi.GPIO as gpio
 import time
+import concurrent.futures
+
+
+# starts n string_to_led functions, format is {pin : word}
+def start_morse(pins_and_words: dict):
+    n = len(pins_and_words)
+    executor = concurrent.futures.ThreadPoolExecutor(max_workers=n)
+    for pin in pins_and_words:
+        word = pins_and_words.get(pin)
+        executor.submit(string_to_led, word, pin)
 
 
 def string_to_led(message: str, pin_number: int):
@@ -8,7 +18,7 @@ def string_to_led(message: str, pin_number: int):
     gpio.setwarnings(False)
     gpio.setup(pin_number, gpio.OUT)
 
-    morse_code = mt.encrypt(message)
+    morse_code = morse_translator.encrypt(message)
 
     time_word = 2
     time_dot = 0.2

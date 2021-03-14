@@ -14,4 +14,5 @@ while True:
         pass
     if not do_not_cut_wires_still_connected:
         print("STRIKE")
+        pass
     time.sleep(0.1)
