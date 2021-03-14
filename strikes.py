@@ -1,11 +1,7 @@
-# import failure
 
-class Strikes:
 
-    def __init__(self):
-        self.counter = 0
+counter = 0
 
-    def strike(self):
-        self.counter += 1
-        if self.counter >= 3:
-            pass # call failure function
+def strike():
+    strike_pins = [23, 24, 25]
+    active_pin = strike_pins[counter]

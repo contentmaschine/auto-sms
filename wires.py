@@ -2,17 +2,17 @@ import gpiozero
 import time
 
 
-cuttable_wires_pin = 27
-do_not_cut_wires_pin = 17
+cut_wires_pin = 27
+no_cut_wires_pin = 17
 
-cuttable_wires_still_connected = gpiozero.Button(cuttable_wires_pin).is_pressed
-do_not_cut_wires_still_connected = gpiozero.Button(do_not_cut_wires_pin).is_pressed
+cut_wires_online = gpiozero.Button(cut_wires_pin).is_pressed
+no_cut_wires_online = gpiozero.Button(no_cut_wires_pin).is_pressed
 
 while True:
-    if not cuttable_wires_still_connected:
+    if not cut_wires_online:
         print("success")
         pass
-    if not do_not_cut_wires_still_connected:
+    if not no_cut_wires_online:
         print("STRIKE")
         pass
     time.sleep(0.1)
