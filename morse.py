@@ -1,5 +1,4 @@
 import morse_translator
-import RPi.GPIO as gpio
 import time
 import concurrent.futures
 import gpiozero
@@ -17,10 +16,6 @@ def start_morse(pins_and_words: dict):
 
 
 def string_to_led(message: str, pin_number: int):
-    #gpio.setmode(gpio.BCM)
-    #gpio.setwarnings(False)
-    #gpio.setup(pin_number, gpio.OUT)
-
     led = gpiozero.LED(pin_number)
 
     morse_code = morse_translator.encrypt(message)
@@ -34,19 +29,15 @@ def string_to_led(message: str, pin_number: int):
     while True:
         for symbol in morse_code:
             if symbol == ".":
-                #gpio.output(pin_number, gpio.HIGH)
                 led.on()
                 time.sleep(time_dot)
-                #gpio.output(pin_number, gpio.LOW)
                 led.off()
                 time.sleep(time_between)
 
             if symbol == "-":
-                #gpio.output(pin_number, gpio.HIGH)
                 led.on()
                 time.sleep(time_dash)
                 led.off()
-                #gpio.output(pin_number, gpio.LOW)
                 time.sleep(time_between)
 
             if symbol == " ":
