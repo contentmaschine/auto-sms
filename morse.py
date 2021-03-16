@@ -1,7 +1,7 @@
 import morse_translator
 import time
 import concurrent.futures
-import gpiozero
+from gpiozero import LED
 
 
 pins = [5, 6, 26]
@@ -16,7 +16,7 @@ def start_morse(pins_and_words: dict):
 
 
 def string_to_led(message: str, pin_number: int):
-    led = gpiozero.LED(pin_number)
+    led = LED(pin_number)
 
     morse_code = morse_translator.encrypt(message)
 
