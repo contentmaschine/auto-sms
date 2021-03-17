@@ -5,9 +5,9 @@ from game_state import strike_counter
 
 
 # RGBLED has three inputs
-red_pin = 0
-green_pin = 0
-blue_pin = 0
+red_pin = 9
+green_pin = 10
+blue_pin = 11
 led = RGBLED(red=red_pin, green=green_pin, blue=blue_pin)
 
 # four different pins watching over four buttons
