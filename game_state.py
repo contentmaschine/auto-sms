@@ -1,18 +1,18 @@
 from gpiozero import LED
 
-counter = 0
+strike_counter = 0
 
 
 def strike(strike_pins=(23, 24, 25)):
-    global counter
-    active_pin = strike_pins[counter]
+    global strike_counter
+    active_pin = strike_pins[strike_counter]
     strike_led = LED(active_pin)
     strike_led.on()
-    counter += 1
-    if counter > 2:
+    strike_counter += 1
+    if strike_counter > 2:
         # explode
         pass
-    return counter
+    return strike_counter
 
 
 def success(success_pin=16):
