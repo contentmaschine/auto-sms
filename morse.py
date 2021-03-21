@@ -6,6 +6,7 @@ from gpiozero import LED
 
 pins = [5, 6, 26]
 
+
 # starts n string_to_led functions, format is {pin : word}
 def start_morse(pins_and_words: dict):
     n = len(pins_and_words)

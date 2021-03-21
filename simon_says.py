@@ -1,7 +1,11 @@
 import random
 import time
+import game_state
 from gpiozero import RGBLED, Button
-from game_state import strike_counter
+
+
+# to implement:
+# from colorzero import Color
 
 
 # RGBLED has three inputs
@@ -29,8 +33,9 @@ pattern = []
 zero_strike_dict = {"red": blue_button, "blue": red_button, "green": yellow_button, "yellow": green_button}
 one_strike_dict = {"red": yellow_button, "blue": green_button, "green": blue_button, "yellow": red_button}
 two_strike_dict = {"red": green_button, "blue": red_button, "green": yellow_button, "yellow": blue_button}
+
 chiffre_list = [zero_strike_dict, one_strike_dict, two_strike_dict]
-current_chiffre = chiffre_list[strike_counter]
+current_chiffre = chiffre_list[game_state.strike_counter]
 
 cycles = 0
 
@@ -78,7 +83,7 @@ def simon_says():
                             break
                         elif button != right_button:
                             # strike
-                            pass
+                            game_state.strike()
                             # mybe there will be a bug here, such that one wrong press immediately counts as three,
                             # because it counts so fast
 
@@ -86,8 +91,8 @@ def simon_says():
                 if (time.clock() - start_time) >= wait_time:
                     blink()
                     start_time = time.clock()
-        led.color = (1, 1, 1)
+        led.on()
         time.sleep(0.2)
         led.off()
-        6
+
         cycles += 1
