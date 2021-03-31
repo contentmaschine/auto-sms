@@ -5,6 +5,7 @@ from gpiozero import RGBLED, Button, Device
 from colorzero import Color
 
 # for testing
+
 #from gpiozero.pins.mock import MockFactory
 #Device.pin_factory = MockFactory()
 
@@ -64,6 +65,7 @@ def blink():
 
 
 def right_button_pressed():
+    global pressed
     pressed = True
 
 def wrong_button_pressed():
@@ -73,7 +75,6 @@ def wrong_button_pressed():
 # main function
 def simon_says():
     global cycles
-    global pressed
     # random color gets selected at start
 
     # loops through n cycles, always adding colors the pattern
