@@ -89,7 +89,10 @@ def simon_says():
 
             while not pressed:
                 right_button.when_activated = right_button_pressed
-                wrong_buttons = buttons.remove(right_button)
+
+                wrong_buttons = buttons.copy()
+                wrong_buttons.remove(right_button)
+
                 for wrong_button in wrong_buttons:
                     wrong_button.when_activated = wrong_button_pressed
 
