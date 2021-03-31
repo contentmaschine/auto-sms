@@ -3,7 +3,6 @@ import time
 import game_state
 from gpiozero import RGBLED, Button, Device
 from colorzero import Color
-from signal import pause
 
 # for testing
 #from gpiozero.pins.mock import MockFactory
@@ -65,10 +64,11 @@ def blink():
 
 
 def right_button_pressed():
-    raise ValueError
+    pressed = True
 
 def wrong_button_pressed():
     print("Wrong Button pressed")
+    # game_state.strike()
 
 # main function
 def simon_says():
@@ -85,18 +85,19 @@ def simon_says():
             right_button = current_chiffre[color]
             start_time = time.clock()
 
+            pressed = False
 
-            while True:
-                try:
-                    right_button.when_activated = right_button_pressed
-                except:
-                    print("getting to except")
-                    break
-            # if no response for x seconds, then repeat the pattern and reset the timer
+            while not pressed:
+                right_button.when_activated = right_button_pressed
+                wrong_buttons = buttons.remove(right_button)
+                for wrong_button in wrong_buttons:
+                    wrong_button.when_activated = wrong_button_pressed
 
-            if (time.clock() - start_time) >= wait_time:
-                blink()
-                start_time = time.clock()
+
+                # if no response for x seconds, then repeat the pattern and reset the timer
+                if (time.clock() - start_time) >= wait_time:
+                    blink()
+                    start_time = time.clock()
 
             print("We got through the while!")
 
