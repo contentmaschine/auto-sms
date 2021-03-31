@@ -1,17 +1,18 @@
 import random
 import time
 import game_state
-from gpiozero import RGBLED, Button
+from gpiozero import RGBLED, Button, Device
+from colorzero import Color
 
-
-# to implement:
-# from colorzero import Color
+# for testing
+from gpiozero.pins.mock import MockFactory
+Device.pin_factory = MockFactory()
 
 
 # RGBLED has three inputs
-red_pin = 9
+red_pin = 11
 green_pin = 10
-blue_pin = 11
+blue_pin = 9
 led = RGBLED(red=red_pin, green=green_pin, blue=blue_pin)
 
 # four different pins watching over four buttons
@@ -56,11 +57,14 @@ def encode_color(color: str):
 # sends command to RGBLED every cycle
 def blink():
     for color in pattern:
-        led.color = encode_color(color)
+        led.color = Color(color)
         time.sleep(1)
         led.off()
         time.sleep(0.5)
 
+
+def test():
+    print("Right Button pressed")
 
 # main function
 def simon_says():
@@ -76,21 +80,13 @@ def simon_says():
         for color in pattern:
             right_button = current_chiffre[color]
             start_time = time.clock()
-            while True:
-                for button in buttons:
-                    if button.is_pressed:
-                        if button == right_button:
-                            break
-                        elif button != right_button:
-                            # strike
-                            game_state.strike()
-                            # mybe there will be a bug here, such that one wrong press immediately counts as three,
-                            # because it counts so fast
 
-                # if no response for x seconds, then repeat the pattern and reset the timer
-                if (time.clock() - start_time) >= wait_time:
-                    blink()
-                    start_time = time.clock()
+            right_button.when_activated = test
+            # if no response for x seconds, then repeat the pattern and reset the timer
+            if (time.clock() - start_time) >= wait_time:
+                blink()
+                start_time = time.clock()
+
         led.on()
         time.sleep(0.2)
         led.off()
