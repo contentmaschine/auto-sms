@@ -3,6 +3,7 @@ import time
 import game_state
 from gpiozero import RGBLED, Button, Device
 from colorzero import Color
+from signal import pause
 
 # for testing
 #from gpiozero.pins.mock import MockFactory
@@ -82,6 +83,7 @@ def simon_says():
             start_time = time.clock()
 
             right_button.when_activated = test
+            pause()
             # if no response for x seconds, then repeat the pattern and reset the timer
             if (time.clock() - start_time) >= wait_time:
                 blink()
