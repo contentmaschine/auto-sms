@@ -37,7 +37,7 @@ one_strike_dict = {"red": yellow_button, "blue": green_button, "green": blue_but
 two_strike_dict = {"red": green_button, "blue": red_button, "green": yellow_button, "yellow": blue_button}
 
 chiffre_list = [zero_strike_dict, one_strike_dict, two_strike_dict]
-current_chiffre = chiffre_list[game_state.strike_counter]
+
 
 cycles = 1
 
@@ -56,7 +56,7 @@ def right_button_pressed():
 
 def wrong_button_pressed():
     print("Wrong Button pressed")
-    # game_state.strike()
+    game_state.strike()
 
 # main function
 def simon_says():
@@ -68,14 +68,21 @@ def simon_says():
         random_color = random.choice(colors)
         pattern.append(random_color)
         blink()
+
         # expects a response for every shown color
         for color in pattern:
-            right_button = current_chiffre[color]
+
+
             start_time = time.clock()
 
             pressed = False
 
+            #watches the buttons continually and breaks the loop when correctly chosen
             while not pressed:
+
+                current_chiffre = chiffre_list[game_state.strike_counter]
+                right_button = current_chiffre[color]
+
                 right_button.when_activated = right_button_pressed
 
                 wrong_buttons = buttons.copy()
