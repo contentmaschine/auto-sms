@@ -85,13 +85,13 @@ def simon_says():
             right_button = current_chiffre[color]
             start_time = time.clock()
 
-            try:
-                while True:
-                    right_button.when_activated = right_button_pressed
-            # if no response for x seconds, then repeat the pattern and reset the timer
 
-            except:
-                break
+            while True:
+                try:
+                    right_button.when_activated = right_button_pressed
+                except:
+                    break
+            # if no response for x seconds, then repeat the pattern and reset the timer
 
             if (time.clock() - start_time) >= wait_time:
                 blink()
