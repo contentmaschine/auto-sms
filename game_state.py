@@ -12,8 +12,8 @@ def strike(strike_pins=(23, 24, 25)):
     strike_counter += 1
     if strike_counter > 2:
         # explode
+        print("what")
         raise AttributeError("you exploded")
-        pass
     return strike_counter
 
 
