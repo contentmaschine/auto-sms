@@ -73,6 +73,7 @@ def wrong_button_pressed():
 # main function
 def simon_says():
     global cycles
+    global pressed
     # random color gets selected at start
 
     # loops through n cycles, always adding colors the pattern
@@ -88,7 +89,6 @@ def simon_says():
             pressed = False
 
             while not pressed:
-                global pressed
                 right_button.when_activated = right_button_pressed
 
                 wrong_buttons = buttons.copy()
