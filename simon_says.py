@@ -71,12 +71,10 @@ def test():
 def simon_says():
     global cycles
     # random color gets selected at start
-    random_color = random.choice(colors)
-
-    print("Function started")
 
     # loops through n cycles, always adding colors the pattern
     while cycles <= cycle_max:
+        random_color = random.choice(colors)
         pattern.append(random_color)
         blink()
         # expects a response for every shown color
