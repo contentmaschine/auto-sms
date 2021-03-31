@@ -5,8 +5,8 @@ from gpiozero import RGBLED, Button, Device
 from colorzero import Color
 
 # for testing
-from gpiozero.pins.mock import MockFactory
-Device.pin_factory = MockFactory()
+#from gpiozero.pins.mock import MockFactory
+#Device.pin_factory = MockFactory()
 
 
 # RGBLED has three inputs
@@ -16,10 +16,10 @@ blue_pin = 9
 led = RGBLED(red=red_pin, green=green_pin, blue=blue_pin)
 
 # four different pins watching over four buttons
-red_button = Button(0)
-green_button = Button(0)
-blue_button = Button(0)
-yellow_button = Button(0)
+red_button = Button(12)
+green_button = Button(20)
+blue_button = Button(1)
+yellow_button = Button(16)
 
 buttons = [red_button, green_button, blue_button, yellow_button]
 
