@@ -73,6 +73,8 @@ def simon_says():
     # random color gets selected at start
     random_color = random.choice(colors)
 
+    print("Function started")
+
     # loops through n cycles, always adding colors the pattern
     while cycles <= cycle_max:
         pattern.append(random_color)
@@ -83,7 +85,6 @@ def simon_says():
             start_time = time.clock()
 
             right_button.when_activated = test
-            pause()
             # if no response for x seconds, then repeat the pattern and reset the timer
             if (time.clock() - start_time) >= wait_time:
                 blink()
