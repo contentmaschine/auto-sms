@@ -67,6 +67,7 @@ def blink():
 def right_button_pressed():
     global pressed
     pressed = True
+    print("Right Button pressed")
 
 def wrong_button_pressed():
     print("Wrong Button pressed")
@@ -75,6 +76,7 @@ def wrong_button_pressed():
 # main function
 def simon_says():
     global cycles
+    global pressed
     # random color gets selected at start
 
     # loops through n cycles, always adding colors the pattern
