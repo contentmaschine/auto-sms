@@ -39,7 +39,7 @@ two_strike_dict = {"red": green_button, "blue": red_button, "green": yellow_butt
 chiffre_list = [zero_strike_dict, one_strike_dict, two_strike_dict]
 current_chiffre = chiffre_list[game_state.strike_counter]
 
-cycles = 0
+cycles = 1
 
 
 # here the colors get encoded to RGBLED terms
@@ -89,7 +89,7 @@ def simon_says():
                 start_time = time.clock()
 
         led.on()
-        time.sleep(0.2)
+        time.sleep(1)
         led.off()
 
         cycles += 1
