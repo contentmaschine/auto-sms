@@ -5,10 +5,8 @@ from gpiozero import RGBLED, Button, Device
 from colorzero import Color
 
 # for testing
-
-#from gpiozero.pins.mock import MockFactory
-#Device.pin_factory = MockFactory()
-
+# from gpiozero.pins.mock import MockFactory
+# Device.pin_factory = MockFactory()
 
 # RGBLED has three inputs
 red_pin = 11
@@ -24,6 +22,8 @@ yellow_button = Button(16)
 
 buttons = [red_button, green_button, blue_button, yellow_button]
 
+# cycle_max = how many colors need to be correctly processed until success
+# wait_time = how long
 cycle_max = 4
 wait_time = 7
 
@@ -38,7 +38,6 @@ two_strike_dict = {"red": green_button, "blue": red_button, "green": yellow_butt
 
 chiffre_list = [zero_strike_dict, one_strike_dict, two_strike_dict]
 
-
 cycles = 1
 
 # sends command to RGBLED every cycle
@@ -50,10 +49,12 @@ def blink():
         time.sleep(0.5)
 
 
+# function to break loop when correct button is pressed
 def right_button_pressed():
     global pressed
     pressed = True
 
+# function that adds to strike_counter when wrong button is pushed
 def wrong_button_pressed():
     print("Wrong Button pressed")
     game_state.strike()
@@ -72,9 +73,7 @@ def simon_says():
         # expects a response for every shown color
         for color in pattern:
 
-
             start_time = time.clock()
-
             pressed = False
 
             #watches the buttons continually and breaks the loop when correctly chosen
@@ -95,7 +94,6 @@ def simon_says():
                 if (time.clock() - start_time) >= wait_time:
                     blink()
                     start_time = time.clock()
-
 
         led.on()
         time.sleep(1)
