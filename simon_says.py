@@ -90,6 +90,7 @@ def simon_says():
                 try:
                     right_button.when_activated = right_button_pressed
                 except:
+                    print("getting to except")
                     break
             # if no response for x seconds, then repeat the pattern and reset the timer
 
