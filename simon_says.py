@@ -41,20 +41,6 @@ current_chiffre = chiffre_list[game_state.strike_counter]
 
 cycles = 1
 
-
-# here the colors get encoded to RGBLED terms
-def encode_color(color: str):
-    if color == "red":
-        color_code = (1, 0, 0)
-    elif color == "blue":
-        color_code = (0, 0, 1)
-    elif color == "green":
-        color_code = (0, 1, 0)
-    elif color == "yellow":
-        color_code = (1, 1, 0)
-    return color_code
-
-
 # sends command to RGBLED every cycle
 def blink():
     for color in pattern:
@@ -67,7 +53,6 @@ def blink():
 def right_button_pressed():
     global pressed
     pressed = True
-    print("Right Button pressed")
 
 def wrong_button_pressed():
     print("Wrong Button pressed")
@@ -77,9 +62,8 @@ def wrong_button_pressed():
 def simon_says():
     global cycles
     global pressed
-    # random color gets selected at start
 
-    # loops through n cycles, always adding colors the pattern
+    # loops through n cycles, always adding random colors the pattern
     while cycles <= cycle_max:
         random_color = random.choice(colors)
         pattern.append(random_color)
@@ -100,7 +84,6 @@ def simon_says():
                 for wrong_button in wrong_buttons:
                     wrong_button.when_activated = wrong_button_pressed
 
-
                 # if no response for x seconds, then repeat the pattern and reset the timer
                 if (time.clock() - start_time) >= wait_time:
                     blink()
@@ -110,5 +93,6 @@ def simon_says():
         led.on()
         time.sleep(1)
         led.off()
+        time.sleep(1)
 
         cycles += 1
