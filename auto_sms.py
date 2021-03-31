@@ -2,6 +2,8 @@ import serial
 import time
 import re
 
+# for future implemnt: rgx_number needs changing
+
 rgx_index = re.compile("([0-9]+)")
 rgx_number = re.compile("(\+[0-9]+)")
 
@@ -38,6 +40,8 @@ def send_message(sms_index):
     if match_object is None:
         raise RuntimeError("Cannot read sms")
     number = match_object.group()
+
+    # not needed for raspi project
 
     print("sending sms to number: ")
     print(number)
