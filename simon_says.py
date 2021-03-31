@@ -88,6 +88,7 @@ def simon_says():
             pressed = False
 
             while not pressed:
+                global pressed
                 right_button.when_activated = right_button_pressed
 
                 wrong_buttons = buttons.copy()
@@ -102,7 +103,6 @@ def simon_says():
                     blink()
                     start_time = time.clock()
 
-            print("We got through the while!")
 
         led.on()
         time.sleep(1)
