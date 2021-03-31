@@ -64,8 +64,11 @@ def blink():
         time.sleep(0.5)
 
 
-def test():
-    print("Right Button pressed")
+def right_button_pressed():
+    raise ValueError
+
+def wrong_button_pressed():
+    print("Wrong Button pressed")
 
 # main function
 def simon_says():
@@ -82,11 +85,19 @@ def simon_says():
             right_button = current_chiffre[color]
             start_time = time.clock()
 
-            right_button.when_activated = test
+            try:
+                while True:
+                    right_button.when_activated = right_button_pressed
             # if no response for x seconds, then repeat the pattern and reset the timer
+
+            except:
+                break
+
             if (time.clock() - start_time) >= wait_time:
                 blink()
                 start_time = time.clock()
+
+            print("We got through the while!")
 
         led.on()
         time.sleep(1)
