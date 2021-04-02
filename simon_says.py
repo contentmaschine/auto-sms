@@ -5,8 +5,8 @@ from gpiozero import RGBLED, Button, Device
 from colorzero import Color
 
 # for testing
-# from gpiozero.pins.mock import MockFactory
-# Device.pin_factory = MockFactory()
+#from gpiozero.pins.mock import MockFactory, MockPWMPin
+#Device.pin_factory = MockFactory(pin_class=MockPWMPin)
 
 # RGBLED has three inputs
 red_pin = 11
@@ -101,3 +101,5 @@ def simon_says():
         cycles += 1
 
     return 1
+
+simon_says()
