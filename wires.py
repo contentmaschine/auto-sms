@@ -14,10 +14,10 @@ def wires():
     wrong_connection.when_deactivated = game_state.strike
 
     while not game_state.wires_done:
-        _ = 0
+        time.sleep(0.1)
 
 def right_wire():
-    game_state.success(16)
+    #game_state.success(16)
     game_state.wires_done = True
 
 
