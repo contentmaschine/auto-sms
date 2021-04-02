@@ -3,6 +3,8 @@ import simon_says
 import wires
 import concurrent.futures
 import game_state
+import time
+
 
 # TODO:
 #  auto-sms configure for actual task
@@ -11,6 +13,10 @@ import game_state
 #  Success LEDS for SimonSays and Wires
 
 # game should start with SimonSays and Wires active, which need to be solved to enable morse, which then enables sms defusing
+
+with concurrent.futures.ThreadPoolExecutor() as executor:
+    executor.submit(wires.wires)
+    time.sleep(100)
 
 executor = concurrent.futures.ThreadPoolExecutor()
 executor.submit(wires.wires)
