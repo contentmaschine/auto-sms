@@ -16,11 +16,7 @@ import time
 
 with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.submit(wires.wires)
-    time.sleep(100)
-
-executor = concurrent.futures.ThreadPoolExecutor()
-executor.submit(wires.wires)
-executor.submit(simon_says.simon_says)
+    executor.submit(simon_says.simon_says)
 
 if game_state.wires_done and game_state.simon_says_done:
     print("first stage check")
