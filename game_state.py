@@ -6,6 +6,7 @@ import concurrent.futures
 strike_counter = 0
 wires_done = False
 simon_says_done = False
+sms_done = False
 
 
 def strike(strike_pins: tuple=(23, 24, 25)):

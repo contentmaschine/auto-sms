@@ -1,13 +1,14 @@
-import morse
 import simon_says
 import wires
+import sms_reader
+import morse
 import concurrent.futures
 import game_state
-import time
+
 
 
 # TODO:
-#  auto-sms configure for actual task
+#  check if sms_reader works and finally change all the sleeps to smaller values
 #  game_master implementation
 #  LCD
 #  Success LEDS for SimonSays and Wires
@@ -20,6 +21,8 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
 
 if game_state.wires_done and game_state.simon_says_done:
     print("first stage check")
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        executor.submit(sms_reader)
 
 
 # the pins are 5, 6, 26 from left to right
