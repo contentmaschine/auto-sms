@@ -1,5 +1,6 @@
 from gpiozero import DigitalInputDevice
 import game_state
+import time
 
 
 right_pin = 27
@@ -13,7 +14,7 @@ def wires():
     wrong_connection.when_deactivated = game_state.strike
 
     while not game_state.wires_done:
-        pass
+        time.sleep(0.1)
 
 def right_wire():
     game_state.success(16)
