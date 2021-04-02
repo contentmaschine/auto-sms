@@ -10,12 +10,13 @@ def strike(strike_pins=(23, 24, 25)):
     active_pin = strike_pins[strike_counter]
     strike_led = LED(active_pin)
     strike_led.on()
-    pause()
+
     strike_counter += 1
     if strike_counter > 2:
         # explode
         raise AttributeError("you exploded")
-    return strike_counter
+    #return strike_counter
+    pause()
 
 
 def success(success_pin=16):
