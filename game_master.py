@@ -22,8 +22,7 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
 if game_state.wires_done and game_state.simon_says_done:
     print("first stage check")
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        executor.submit(sms_reader)
-
-
-# the pins are 5, 6, 26 from left to right
-
+        executor.submit(morse.morse, {5: "SMS", 6: "FELIX", 26: "DEFUSE"})
+        executor.submit(sms_reader.sms_reader)
+    if game_state.sms_done:
+        print("U DO IT")
