@@ -10,7 +10,7 @@ def strike(strike_pins=(23, 24, 25)):
     global strike_counter
     active_pin = strike_pins[strike_counter]
 
-    executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+    executor = concurrent.futures.ThreadPoolExecutor()
     executor.submit(strike_led_on, active_pin)
 
     strike_counter += 1
