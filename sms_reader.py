@@ -39,19 +39,6 @@ def send_message(sms_index):
     match_object = rgx_number.search(sms)
     if match_object is None:
         raise RuntimeError("Cannot read sms")
-    number = match_object.group()
-
-    # not needed for raspi project
-
-    print("sending sms to number: ")
-    print(number)
-
-    number = str.encode(number)
-    port.write(b"AT+CMGS=\"" + number + b"\"" + enter)
-    time.sleep(0.5)
-    port.write(b"This is an automated return message, sent to impress.")
-    time.sleep(0.1)
-    port.write(b"\x1A")
 
     done = True
 

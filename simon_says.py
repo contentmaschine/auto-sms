@@ -48,7 +48,6 @@ def blink():
         led.off()
         time.sleep(0.5)
 
-
 # function to break loop when correct button is pressed
 def right_button_pressed():
     global pressed
@@ -56,7 +55,6 @@ def right_button_pressed():
 
 # function that adds to strike_counter when wrong button is pushed
 def wrong_button_pressed():
-    print("Wrong Button pressed")
     game_state.strike()
 
 # main function
@@ -101,3 +99,5 @@ def simon_says():
         time.sleep(1)
 
         cycles += 1
+
+    return 1
