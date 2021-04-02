@@ -53,10 +53,6 @@ def right_button_pressed():
     global pressed
     pressed = True
 
-# function that adds to strike_counter when wrong button is pushed
-def wrong_button_pressed():
-    game_state.strike()
-
 # main function
 def simon_says():
     global cycles
@@ -82,8 +78,9 @@ def simon_says():
             wrong_buttons = buttons.copy()
             wrong_buttons.remove(right_button)
 
+            # calls the strike function when of the 3 wrong buttons is pushed
             for wrong_button in wrong_buttons:
-                wrong_button.when_activated = wrong_button_pressed
+                wrong_button.when_activated = game_state.strike
 
             #watches the buttons continually and breaks the loop when correctly chosen
             while not pressed:
@@ -100,6 +97,6 @@ def simon_says():
 
         cycles += 1
 
-    return 1
+    game_state.simon_says_done = True
 
 simon_says()

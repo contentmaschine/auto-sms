@@ -2,6 +2,7 @@ import morse
 import simon_says
 import wires
 import concurrent.futures
+import game_state
 
 # TODO:
 #  auto-sms configure for actual task
@@ -11,11 +12,11 @@ import concurrent.futures
 
 # game should start with SimonSays and Wires active, which need to be solved to enable morse, which then enables sms defusing
 
-executor = concurrent.futures.ThreadPoolExecutor()
-simon_says_result = executor.submit(simon_says.simon_says).result()
-wires_result = executor.submit(wires.wires).result()
+executor = concurrent.futures.ThreadPoolExecutor(max_workers=2)
+executor.submit(simon_says.simon_says)
+executor.submit(wires.wires)
 
-if simon_says_result and wires_result:
+if game_state.wires_done and game_state.simon_says_done:
     print("first stage check")
 
 

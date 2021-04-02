@@ -4,13 +4,15 @@ import concurrent.futures
 
 
 strike_counter = 0
+wires_done = False
+simon_says_done = False
 
 
-def strike(strike_pins=(23, 24, 25)):
+def strike(strike_pins: tuple=(23, 24, 25)):
     global strike_counter
     active_pin = strike_pins[strike_counter]
 
-    executor = concurrent.futures.ThreadPoolExecutor()
+    executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
     executor.submit(strike_led_on, active_pin)
 
     strike_counter += 1
@@ -19,14 +21,16 @@ def strike(strike_pins=(23, 24, 25)):
         raise AttributeError("you exploded")
 
 
-def strike_led_on(active_pin):
+def strike_led_on(active_pin: int):
     strike_led = LED(active_pin)
     strike_led.on()
     pause()
 
-
-def success(success_pin=16):
-    success_led = LED(success_pin)
+def success_led_on(active_pin):
+    success_led = LED(active_pin)
     success_led.on()
-    # do win
-    pass
+    pause()
+
+def success(success_pin: int):
+    executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+    executor.submit(success_led_on(success_pin))

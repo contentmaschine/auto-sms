@@ -1,21 +1,20 @@
-from gpiozero import Button
+from gpiozero import Button, DigitalInputDevice
 import time
 import game_state
 
 
-cut_wires_pin = 27
-no_cut_wires_pin = 17
+right_pin = 27
+wrong_pin = 17
 
-cut_wires_online = Button(cut_wires_pin).is_pressed
-no_cut_wires_online = Button(no_cut_wires_pin).is_pressed
+right_connection = DigitalInputDevice(pin=right_pin, pull_up=True)
+wrong_connection = DigitalInputDevice(pin=wrong_pin, pull_up=True)
 
 def wires():
-    triggered = False
-    while True:
-        if not cut_wires_online:
-            return 1
+    right_connection.when_deactivated = right_wire
+    wrong_connection.when_deactivated = game_state.strike
 
-        if not no_cut_wires_online and not triggered:
-            game_state.strike()
-            triggered = True
-        time.sleep(0.1)
+def right_wire():
+    game_state.success(16)
+    game_state.wires_done = True
+
+
