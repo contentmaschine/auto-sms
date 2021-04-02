@@ -1,4 +1,5 @@
 from gpiozero import LED
+from signal import pause
 
 
 strike_counter = 0
@@ -9,6 +10,7 @@ def strike(strike_pins=(23, 24, 25)):
     active_pin = strike_pins[strike_counter]
     strike_led = LED(active_pin)
     strike_led.on()
+    pause()
     strike_counter += 1
     if strike_counter > 2:
         # explode
