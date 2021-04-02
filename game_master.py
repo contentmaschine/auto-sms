@@ -1,6 +1,6 @@
 import morse
-import simon_says
-import wires
+from simon_says import simon_says
+from wires import wires
 import concurrent.futures
 
 # TODO:
