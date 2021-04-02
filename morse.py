@@ -8,7 +8,7 @@ pins = [5, 6, 26]
 
 
 # starts n string_to_led functions, format is {pin : word}
-def start_morse(pins_and_words: dict):
+def morse(pins_and_words: dict):
     if pins_and_words is None:
         pins_and_words = {5: "S", 6: "O", 26: "S"}
     n = len(pins_and_words)
