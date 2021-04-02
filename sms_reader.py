@@ -34,7 +34,7 @@ def sms_reader():
             print("Received SMS at Index: " + sms_index)
             sms_index = str.encode(sms_index)
             send_message(sms_index)
-        time.sleep(1)
+        time.sleep(0.5)
 
 
 def send_message(sms_index):

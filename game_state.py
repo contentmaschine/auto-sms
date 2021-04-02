@@ -11,10 +11,10 @@ sms_done = False
 
 def strike(strike_pins: tuple=(23, 24, 25)):
     global strike_counter
-    active_pin = strike_pins[strike_counter]
+    strike_pin = strike_pins[strike_counter]
 
     executor = concurrent.futures.ThreadPoolExecutor()
-    executor.submit(strike_led_on, active_pin)
+    executor.submit(strike_led_on, strike_pin)
 
     strike_counter += 1
     if strike_counter > 2:
@@ -22,16 +22,20 @@ def strike(strike_pins: tuple=(23, 24, 25)):
         raise AttributeError("you exploded")
 
 
-def strike_led_on(active_pin: int):
-    strike_led = LED(active_pin)
+def strike_led_on(strike_pin: int):
+    strike_led = LED(strike_pin)
     strike_led.on()
     pause()
-
-def success_led_on(active_pin):
-    success_led = LED(active_pin)
-    success_led.on()
-    pause()
-
+    
+    
 def success(success_pin: int):
     executor = concurrent.futures.ThreadPoolExecutor()
     executor.submit(success_led_on(success_pin))
+    
+    
+def success_led_on(success_pin):
+    success_led = LED(success_pin)
+    success_led.on()
+    pause()
+
+
