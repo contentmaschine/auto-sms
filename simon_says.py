@@ -3,7 +3,6 @@ import time
 import game_state
 from gpiozero import RGBLED, Button, Device
 from colorzero import Color
-from signal import pause
 
 
 # for testing
@@ -100,6 +99,7 @@ def simon_says():
                     start_time = time.clock()
 
             if wrong_pressed:
+                time.sleep(0.5)
                 break
 
         if not wrong_pressed:
@@ -111,5 +111,3 @@ def simon_says():
             cycles += 1
 
     game_state.simon_says_done = True
-    led.color = Color("green")
-    pause()
