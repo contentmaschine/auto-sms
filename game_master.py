@@ -20,7 +20,8 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.submit(wires.wires)
     executor.submit(simon_says.simon_says)
 
-if game_state.wires_done and game_state.simon_says_done:
+#if game_state.wires_done and game_state.simon_says_done:
+if True:
     print("first stage check")
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.submit(morse.morse, {5: "SMS", 6: "FELIX", 26: "DEFUSE"})

@@ -30,14 +30,14 @@ def sms_reader():
         print(event)
         match_object = rgx_index.search(event)
         if match_object is not None:
-            sms_index = match_object.group()
+            sms_index = match_object.group(1)
             print("Received SMS at Index: " + sms_index)
             sms_index = str.encode(sms_index)
-            send_message(sms_index)
+            receive_message(sms_index)
         time.sleep(0.5)
 
 
-def send_message(sms_index):
+def receive_message(sms_index):
     # text mode
     port.write(b"AT+CMGF=1" + enter)
     time.sleep(1)
@@ -46,12 +46,16 @@ def send_message(sms_index):
     time.sleep(1)
     sms = port.read(1000)
     sms = sms.decode("utf-8")
-    time.sleep(1)
 
     print("sms:")
     print(sms)
 
     match_object = rgx_defuse.search(sms)
-    if match_object is None:
-        game_state.strike()
-    game_state.sms_done = True
+    if match_object is not None:
+        if match_object.group() == "defuse":
+            game_state.sms_done = True
+        else:
+            game_state.strike()
+    else:
+        print("something wrong with sms")
+
