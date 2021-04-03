@@ -4,7 +4,7 @@ import re
 import game_state
 
 
-rgx_index = re.compile("([0-9]+)")
+rgx_index = re.compile('\\+CMTI.*,([0-9]+)')
 rgx_defuse = re.compile("defuse", re.I)
 
 port = serial.Serial("/dev/serial0", baudrate=115000, timeout=10.0)
@@ -53,5 +53,5 @@ def send_message(sms_index):
 
     match_object = rgx_defuse.search(sms)
     if match_object is None:
-        raise RuntimeError("BOOM")
+        game_state.strike()
     game_state.sms_done = True

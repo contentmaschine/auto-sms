@@ -8,7 +8,8 @@ import game_state
 
 
 # TODO:
-#  check if sms_reader works and finally change all the sleeps to smaller values
+#  check if sms_reader works and finally change all the sleeps to smaller values, sms restrict console input
+#  simon_says reset when err
 #  game_master implementation
 #  LCD
 #  Success LEDS for SimonSays and Wires

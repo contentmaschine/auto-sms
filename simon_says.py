@@ -4,6 +4,7 @@ import game_state
 from gpiozero import RGBLED, Button, Device
 from colorzero import Color
 
+
 # for testing
 #from gpiozero.pins.mock import MockFactory, MockPWMPin
 #Device.pin_factory = MockFactory(pin_class=MockPWMPin)
@@ -50,13 +51,20 @@ def blink():
 
 # function to break loop when correct button is pressed
 def right_button_pressed():
-    global pressed
-    pressed = True
+    global right_pressed
+    right_pressed = True
+
+# reset cycles, reset pattern, add strike
+def wrong_button_pressed():
+    global cycles, pattern, wrong_pressed
+    cycles = 1
+    pattern = []
+    game_state.strike()
+    wrong_pressed = True
 
 # main function
 def simon_says():
-    global cycles
-    global pressed
+    global cycles, right_pressed, wrong_pressed
 
     # loops through n cycles, always adding random colors the pattern
     while cycles <= cycle_max:
@@ -66,13 +74,14 @@ def simon_says():
 
         # expects a response for every shown color
         for color in pattern:
-
             start_time = time.clock()
-            pressed = False
+
+            right_pressed = False
+            wrong_pressed = False
 
             current_chiffre = chiffre_list[game_state.strike_counter]
-            right_button = current_chiffre[color]
 
+            right_button = current_chiffre[color]
             right_button.when_activated = right_button_pressed
 
             wrong_buttons = buttons.copy()
@@ -80,21 +89,24 @@ def simon_says():
 
             # calls the strike function when of the 3 wrong buttons is pushed
             for wrong_button in wrong_buttons:
-                wrong_button.when_activated = game_state.strike
+                wrong_button.when_activated = wrong_button_pressed
 
             #watches the buttons continually and breaks the loop when correctly chosen
-            while not pressed:
-
+            while not right_pressed and not wrong_pressed:
                 # if no response for x seconds, then repeat the pattern and reset the timer
                 if (time.clock() - start_time) >= wait_time:
                     blink()
                     start_time = time.clock()
 
-        led.on()
-        time.sleep(1)
-        led.off()
-        time.sleep(1)
+            if wrong_pressed:
+                break
 
-        cycles += 1
+        if not wrong_pressed:
+            led.on()
+            time.sleep(1)
+            led.off()
+            time.sleep(1)
+
+            cycles += 1
 
     game_state.simon_says_done = True
