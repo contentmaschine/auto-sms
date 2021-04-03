@@ -1,6 +1,4 @@
-import serial
-import time
-import re
+import serial, time, re
 import game_state
 
 
@@ -36,7 +34,6 @@ def sms_reader():
             receive_message(sms_index)
         time.sleep(0.5)
 
-
 def receive_message(sms_index):
     # text mode
     port.write(b"AT+CMGF=1" + enter)
@@ -46,16 +43,12 @@ def receive_message(sms_index):
     time.sleep(1)
     sms = port.read(1000)
     sms = sms.decode("utf-8")
-
     print("sms:")
     print(sms)
-
     match_object = rgx_defuse.search(sms)
-    if match_object is not None:
-        if match_object.group() == "defuse":
-            game_state.sms_done = True
-        else:
-            game_state.strike()
-    else:
-        print("something wrong with sms")
 
+    if match_object is not None:
+        game_state.sms_done = True
+    else:
+        game_state.strike()
+        print("something wrong with sms")

@@ -1,7 +1,6 @@
-import random
-import time
+import random, time
 import game_state
-from gpiozero import RGBLED, Button, Device
+from gpiozero import RGBLED, Button
 from colorzero import Color
 
 
@@ -75,12 +74,10 @@ def simon_says():
         # expects a response for every shown color
         for color in pattern:
             start_time = time.clock()
-
             right_pressed = False
             wrong_pressed = False
 
             current_chiffre = chiffre_list[game_state.strike_counter]
-
             right_button = current_chiffre[color]
             right_button.when_activated = right_button_pressed
 
@@ -107,7 +104,6 @@ def simon_says():
             time.sleep(1)
             led.off()
             time.sleep(1)
-
             cycles += 1
 
     game_state.simon_says_done = True

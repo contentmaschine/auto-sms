@@ -1,10 +1,5 @@
-import simon_says
-import wires
-import sms_reader
-import morse
-import concurrent.futures
-import game_state
-
+import game_state, simon_says, wires, sms_reader, morse
+import concurrent.futures, time
 
 
 # TODO:
@@ -22,6 +17,8 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
 
 if game_state.wires_done and game_state.simon_says_done:
     print("first stage check")
+    # artistic pause
+    time.sleep(1)
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.submit(morse.morse, {5: "SMS", 6: "FELIX", 26: "DEFUSE"})
         executor.submit(sms_reader.sms_reader)
