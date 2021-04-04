@@ -32,15 +32,15 @@ def sms_reader():
             print("Received SMS at Index: " + sms_index)
             sms_index = str.encode(sms_index)
             receive_message(sms_index)
-        time.sleep(0.5)
+        time.sleep(0.1)
 
 def receive_message(sms_index):
     # text mode
     port.write(b"AT+CMGF=1" + enter)
-    time.sleep(1)
+    time.sleep(0.3)
     # read sms at index
     port.write(b"AT+CMGR=" + sms_index + enter)
-    time.sleep(1)
+    time.sleep(0.3)
     sms = port.read(1000)
     sms = sms.decode("utf-8")
     print("sms:")

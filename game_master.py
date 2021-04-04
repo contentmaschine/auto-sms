@@ -3,11 +3,9 @@ import concurrent.futures, time
 
 
 # TODO:
-#  check if sms_reader works and finally change all the sleeps to smaller values, sms restrict console input
-#  simon_says reset when err
-#  game_master implementation
-#  LCD
+#  LCD game_master implementation
 #  Success LEDS for SimonSays and Wires
+#  Instructions for Players
 
 # game should start with SimonSays and Wires active, which need to be solved to enable morse, which then enables sms defusing
 

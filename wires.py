@@ -5,7 +5,6 @@ import time
 
 right_pin = 27
 wrong_pin = 17
-
 right_connection = DigitalInputDevice(pin=right_pin, pull_up=True)
 wrong_connection = DigitalInputDevice(pin=wrong_pin, pull_up=True)
 
@@ -17,7 +16,5 @@ def wires():
         time.sleep(0.1)
 
 def right_wire():
-    #game_state.success(16)
     game_state.wires_done = True
-
-
+    game_state.success(21)

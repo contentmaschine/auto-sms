@@ -13,20 +13,19 @@ red_pin = 11
 green_pin = 10
 blue_pin = 9
 led = RGBLED(red=red_pin, green=green_pin, blue=blue_pin)
+success_pin = 19
 
 # four different pins watching over four buttons
 red_button = Button(12)
 green_button = Button(20)
 blue_button = Button(1)
 yellow_button = Button(16)
-
 buttons = [red_button, green_button, blue_button, yellow_button]
 
 # cycle_max = how many colors need to be correctly processed until success
 # wait_time = how long
 cycle_max = 4
 wait_time = 7
-
 # pattern list will store the colors seen by the player
 colors = ["red", "blue", "yellow", "green"]
 pattern = []
@@ -107,3 +106,4 @@ def simon_says():
             cycles += 1
 
     game_state.simon_says_done = True
+    game_state.success(19)
