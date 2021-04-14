@@ -4,6 +4,8 @@ from gpiozero import RGBLED, Button
 from colorzero import Color
 
 
+#known bugs: buttons don't stop listening after success
+
 # for testing
 #from gpiozero.pins.mock import MockFactory, MockPWMPin
 #Device.pin_factory = MockFactory(pin_class=MockPWMPin)
