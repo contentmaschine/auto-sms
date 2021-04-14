@@ -49,6 +49,7 @@ def receive_message(sms_index):
 
     if match_object is not None:
         game_state.sms_done = True
+        return True
     else:
         game_state.strike()
         print("something wrong with sms")

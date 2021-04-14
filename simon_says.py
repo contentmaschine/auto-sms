@@ -109,3 +109,4 @@ def simon_says():
 
     game_state.simon_says_done = True
     game_state.success(19)
+    return True

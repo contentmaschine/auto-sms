@@ -14,6 +14,7 @@ def wires():
 
     while not game_state.wires_done:
         time.sleep(0.1)
+    return True
 
 def right_wire():
     game_state.wires_done = True
