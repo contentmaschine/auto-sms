@@ -26,7 +26,7 @@ buttons = [red_button, green_button, blue_button, yellow_button]
 
 # cycle_max = how many colors need to be correctly processed until success
 # wait_time = how long
-cycle_max = 4
+cycle_max = 2
 wait_time = 7
 # pattern list will store the colors seen by the player
 colors = ["red", "blue", "yellow", "green"]
