@@ -17,4 +17,4 @@ def wires():
 
 def right_wire():
     game_state.wires_done = True
-    #game_state.success(21)
+    game_state.success(21)

@@ -3,7 +3,7 @@ import concurrent.futures, time
 from gpiozero import LED
 
 
-pins = [5, 6, 26]
+# pins = [5, 6, 26]
 
 # starts n string_to_led functions, format is {pin : word}
 def morse(pins_and_words: dict):
