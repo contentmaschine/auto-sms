@@ -7,6 +7,7 @@ strike_counter = 0
 wires_done = False
 simon_says_done = False
 sms_done = False
+led_on = True
 
 def strike(strike_pins: tuple=(23, 24, 25)):
     global strike_counter
@@ -30,6 +31,7 @@ def success(success_pin: int):
     executor.submit(success_led_on(success_pin))
 
 def success_led_on(success_pin):
-    success_led = LED(success_pin)
-    success_led.on()
-    pause()
+    if led_on:
+        success_led = LED(success_pin)
+        success_led.on()
+        pause()
