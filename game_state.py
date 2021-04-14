@@ -7,7 +7,7 @@ strike_counter = 0
 wires_done = False
 simon_says_done = False
 sms_done = False
-led_on = True
+led_on = False
 
 def strike(strike_pins: tuple=(23, 24, 25)):
     global strike_counter
