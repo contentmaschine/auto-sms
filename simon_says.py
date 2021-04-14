@@ -108,5 +108,5 @@ def simon_says():
             cycles += 1
 
     game_state.simon_says_done = True
-    game_state.success(19)
+    #game_state.success(19)
     return True
