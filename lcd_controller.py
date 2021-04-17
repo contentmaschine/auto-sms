@@ -84,11 +84,12 @@ bomb_icon_data = [
 mylcd.lcd_load_custom_chars(bomb_icon_data)
 
 mylcd.lcd_write(0x80)
-mylcd.lcd_write_char(0)
-mylcd.lcd_write_char(1)
-mylcd.lcd_write_char(2)
-
-mylcd.lcd_write(0xC0)
 mylcd.lcd_write_char(3)
 mylcd.lcd_write_char(4)
 mylcd.lcd_write_char(5)
+
+mylcd.lcd_write(0xC0)
+
+mylcd.lcd_write_char(0)
+mylcd.lcd_write_char(1)
+mylcd.lcd_write_char(2)
