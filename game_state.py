@@ -1,12 +1,14 @@
 from gpiozero import LED
 from signal import pause
 import concurrent.futures
+import time
 
 
 strike_counter = 0
 wires_done = False
 simon_says_done = False
 sms_done = False
+# for quicker testing
 led_on = False
 
 def strike(strike_pins: tuple=(23, 24, 25)):
@@ -34,4 +36,5 @@ def success_led_on(success_pin):
     if led_on:
         success_led = LED(success_pin)
         success_led.on()
-        pause()
+        time.sleep(1)
+        success_led.off()
