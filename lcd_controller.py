@@ -94,7 +94,7 @@ mylcd.lcd_write_char(0)
 mylcd.lcd_write_char(1)
 mylcd.lcd_write_char(2)
 
-mylcd.lcd_write(0xC0)
+mylcd.lcd_write(0x94)
 
 mylcd.lcd_write_char(0)
 mylcd.lcd_write_char(1)
