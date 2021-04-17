@@ -66,6 +66,34 @@ bomb_icon_data = [
     0b00000,
     0b00000,
     0b00000
+    ],
+    [
+    0b00001,
+    0b11111,
+    0b11111,
+    0b01110,
+    0b00100,
+    0b00010,
+    0b00100,
+    0b00100
+    ],[
+    0b11111,
+    0b11111,
+    0b11111,
+    0b00000,
+    0b00100,
+    0b00010,
+    0b00100,
+    0b00100
+    ],[
+    0b11111,
+    0b11111,
+    0b11111,
+    0b01110,
+    0b00100,
+    0b11110,
+    0b00100,
+    0b00100
     ]
     # ,
     # #top mid
@@ -96,9 +124,9 @@ mylcd.lcd_write_char(2)
 
 mylcd.lcd_write(0x94)
 
-mylcd.lcd_write_char(0)
-mylcd.lcd_write_char(1)
-mylcd.lcd_write_char(2)
+mylcd.lcd_write_char(6)
+mylcd.lcd_write_char(7)
+mylcd.lcd_write_char(8)
 
 mylcd.lcd_write(0xD4)
 
