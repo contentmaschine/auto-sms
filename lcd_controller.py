@@ -200,8 +200,9 @@ try:
 		for index, row in enumerate(rows):
 			mylcd.lcd_load_custom_chars(shroom_data_list[index])
 			mylcd.lcd_write(row)
-			for i in range (5):
-				mylcd.lcd_write_char(i)
+			for x in range(3):
+				for i in range (5):
+					mylcd.lcd_write_char(i)
 			time.sleep(0.15)
 			mylcd.lcd_clear()
 except:
