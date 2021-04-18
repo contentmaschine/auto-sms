@@ -202,7 +202,7 @@ try:
 			mylcd.lcd_write(row)
 			for i in range (5):
 				mylcd.lcd_write_char(i)
-			time.sleep(0.2)
+			time.sleep(0.05)
 			mylcd.lcd_clear()
 except:
 	mylcd.lcd_clear()
