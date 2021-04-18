@@ -198,8 +198,8 @@ rows = [0x80, 0xC0, 0x94, 0xD4]
 
 
 def start_screen():
-	mylcd.lcd_display_string_pos("KEEP RASPI", 2, 3)
-	mylcd.lcd_display_string_pos("TALKING", 3, 5)
+	mylcd.lcd_display_string_pos("KEEP RASPI", 2, 5)
+	mylcd.lcd_display_string_pos("TALKING", 3, 6)
 
 
 def explode():
