@@ -200,3 +200,4 @@ for row, index in enumerate(rows):
 	for i in range (5 * index, 5 * index + 5 + 1):
 		mylcd.lcd_write_char(i)
 	time.sleep(0.5)
+	mylcd.lcd_clear()
