@@ -194,7 +194,7 @@ shroom_data_bot = [
 shroom_data_list = [shroom_data_bot, shroom_data_lower_mid, shroom_data_upper_mid, shroom_data_top]
 
 rows = [0x80, 0xC0, 0x94, 0xD4]
-
+rows.reverse()
 
 def start_screen():
 	mylcd.lcd_display_string_pos("KEEP RASPI", 2, 5)
