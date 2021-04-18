@@ -1,4 +1,5 @@
 import RPi_I2C_driver
+import time
 
 mylcd = RPi_I2C_driver.lcd()
 
@@ -198,3 +199,4 @@ for row, index in enumerate(rows):
 	mylcd.lcd_write(row)
 	for i in range (5 * index, 5 * index + 5 + 1):
 		mylcd.lcd_write_char(i)
+	time.sleep(0.5)
