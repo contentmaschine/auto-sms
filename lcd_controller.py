@@ -192,7 +192,7 @@ shroom_data_four = [[
 
 shroom_data_list = [shroom_data_one, shroom_data_two, shroom_data_three, shroom_data_four]
 
-rows = [0xD4, 0x94, 0xC0, 0x80]
+rows = [0x80 , 0xC0, 0x94, 0xD4]
 
 try:
 	while True:
