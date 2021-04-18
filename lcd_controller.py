@@ -192,7 +192,7 @@ shroom_data_bot = [
 		0b11110
 	]]
 shroom_data_list = [shroom_data_bot, shroom_data_lower_mid, shroom_data_upper_mid, shroom_data_top]
-
+shroom_data_list.reverse()
 rows = [0x80, 0xC0, 0x94, 0xD4]
 rows.reverse()
 
@@ -203,7 +203,6 @@ def start_screen():
 
 def explode():
 	try:
-		rows.reverse()
 		while True:
 			for index, row in enumerate(rows):
 				mylcd.lcd_load_custom_chars(shroom_data_list[index])
