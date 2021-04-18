@@ -2,8 +2,7 @@ import RPi_I2C_driver
 
 mylcd = RPi_I2C_driver.lcd()
 
-shroom_data = [
-[
+shroom_data_one = [[
 	0b00000,
 	0b00000,
 	0b00000,
@@ -12,8 +11,7 @@ shroom_data = [
 	0b00011,
 	0b00111,
 	0b00111
-],
-[
+],[
 	0b00001,
 	0b00111,
 	0b01111,
@@ -49,7 +47,9 @@ shroom_data = [
 	0b11000,
 	0b11100,
 	0b11110
-],[
+]]
+
+shroom_data_two = [[
 	0b00011,
 	0b00011,
 	0b00001,
@@ -94,7 +94,9 @@ shroom_data = [
 	0b00000,
 	0b00000,
 	0b00000
-],[
+]]
+
+shroom_data_three = [[
 	0b00011,
 	0b00011,
 	0b00011,
@@ -139,7 +141,8 @@ shroom_data = [
 	0b00000,
 	0b00000,
 	0b00000
-],[
+]]
+shroom_data_four = [[
 	0b00000,
 	0b00000,
 	0b00000,
@@ -184,35 +187,14 @@ shroom_data = [
 	0b00000,
 	0b00000,
 	0b11110
-],
-]
+]]
 
-mylcd.lcd_load_custom_chars(shroom_data)
+shroom_data_list = [shroom_data_one, shroom_data_two, shroom_data_three, shroom_data_four]
 
-mylcd.lcd_write(0x80)
-mylcd.lcd_write_char(0)
-mylcd.lcd_write_char(1)
-mylcd.lcd_write_char(2)
-mylcd.lcd_write_char(3)
-mylcd.lcd_write_char(4)
+rows = [0xD4, 0x94, 0xC0, 0x80]
 
-mylcd.lcd_write(0xC0)
-mylcd.lcd_write_char(5)
-mylcd.lcd_write_char(6)
-mylcd.lcd_write_char(7)
-mylcd.lcd_write_char(8)
-mylcd.lcd_write_char(9)
-
-mylcd.lcd_write(0x94)
-mylcd.lcd_write_char(10)
-mylcd.lcd_write_char(11)
-mylcd.lcd_write_char(12)
-mylcd.lcd_write_char(13)
-mylcd.lcd_write_char(14)
-
-mylcd.lcd_write(0xD4)
-mylcd.lcd_write_char(15)
-mylcd.lcd_write_char(16)
-mylcd.lcd_write_char(17)
-mylcd.lcd_write_char(18)
-mylcd.lcd_write_char(19)
+for row, index in enumerate(rows):
+	mylcd.lcd_load_custom_chars(shroom_data_list[index])
+	mylcd.lcd_write(row)
+	for i in range (5 * index, 5 * index + 5 + 1):
+		mylcd.lcd_write_char(i)
