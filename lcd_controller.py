@@ -194,7 +194,7 @@ shroom_data_list = [shroom_data_one, shroom_data_two, shroom_data_three, shroom_
 
 rows = [0xD4, 0x94, 0xC0, 0x80]
 
-for row, index in enumerate(rows):
+for index, row in enumerate(rows):
 	mylcd.lcd_load_custom_chars(shroom_data_list[index])
 	mylcd.lcd_write(row)
 	for i in range (5 * index, 5 * index + 5 + 1):
