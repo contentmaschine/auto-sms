@@ -204,6 +204,7 @@ def start_screen():
 
 def explode():
 	try:
+		rows.reverse()
 		while True:
 			for index, row in enumerate(rows):
 				mylcd.lcd_load_custom_chars(shroom_data_list[index])
