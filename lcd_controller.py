@@ -208,9 +208,8 @@ def explode():
 			for index, row in enumerate(explode_rows):
 				mylcd.lcd_load_custom_chars(shroom_data_list[index])
 				mylcd.lcd_write(row)
-				for _ in range(4):
-					for i in range(5):
-						mylcd.lcd_write_char(i)
+				for i in range(5):
+					mylcd.lcd_write_char(i)
 				time.sleep(0.15)
 				mylcd.lcd_clear()
 	except:
