@@ -17,6 +17,7 @@ def explode():
         mylcd.lcd_clear()
         explode_rows = rows.copy()
         explode_rows.reverse()
+        mylcd.lcd_display_string_pos("KABOOM", 2, 6)
         while True:
             for index, row in enumerate(explode_rows):
                 mylcd.lcd_load_custom_chars(shroom_data_list[index])
@@ -32,9 +33,10 @@ def explode():
 def countdown(minutes: int, seconds: int):
     try:
         while True:
-            # to clear any lingering numbers
-            mylcd.lcd_clear()
             mylcd.lcd_display_string_pos(f"{minutes:02} : {seconds:02}", 2, 7)
+            mylcd.lcd_load_custom_chars(hourglass_data_list[seconds % 3])
+            mylcd.lcd_write(0xC0)
+            mylcd.lcd_write_char(0)
             time.sleep(1)
             seconds -= 1
             if seconds < 0:
