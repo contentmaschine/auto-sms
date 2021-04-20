@@ -4,6 +4,7 @@ import concurrent.futures, time
 
 # TODO:
 #  LCD game_master implementation
+#  Custrom Char positioning
 #  Instructions for Players
 
 # game starts with SimonSays and Wires active, which need to be solved to enable morse, which then enables sms defusing

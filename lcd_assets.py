@@ -1,9 +1,9 @@
 import RPi_I2C_driver
 import time
 
+
 rows = [0x80, 0xC0, 0x94, 0xD4]
 mylcd = RPi_I2C_driver.lcd()
-
 
 # functions
 
