@@ -278,4 +278,4 @@ hourglass_bot = [
         0b00000]
 ]
 
-hourglass_data_list = [hourglass_top, hourglass_middle, hourglass_bot]
+hourglass_data_list = [hourglass_bot, hourglass_middle, hourglass_top]
