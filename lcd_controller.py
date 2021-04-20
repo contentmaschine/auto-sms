@@ -193,7 +193,7 @@ shroom_data_bot = [
 	]]
 shroom_data_list = [shroom_data_bot, shroom_data_lower_mid, shroom_data_upper_mid, shroom_data_top]
 rows = [0x80, 0xC0, 0x94, 0xD4]
-#rows.reverse()
+
 
 def start_screen():
 	mylcd.lcd_display_string_pos("KEEP RASPI", 2, 5)
@@ -202,11 +202,13 @@ def start_screen():
 
 def explode():
 	try:
+		explode_rows = rows.copy()
+		explode_rows.reverse()
 		while True:
 			for index, row in enumerate(rows):
 				mylcd.lcd_load_custom_chars(shroom_data_list[index])
 				mylcd.lcd_write(row)
-				for x in range(4):
+				for _ in range(4):
 					for i in range(5):
 						mylcd.lcd_write_char(i)
 				time.sleep(0.15)
