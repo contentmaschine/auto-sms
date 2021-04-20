@@ -1,3 +1,3 @@
 import lcd_assets
 
-lcd_assets.explode()
+lcd_assets.countdown(1, 10)
