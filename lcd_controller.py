@@ -205,7 +205,7 @@ def explode():
 		explode_rows = rows.copy()
 		explode_rows.reverse()
 		while True:
-			for index, row in enumerate(rows):
+			for index, row in enumerate(explode_rows):
 				mylcd.lcd_load_custom_chars(shroom_data_list[index])
 				mylcd.lcd_write(row)
 				for _ in range(4):
