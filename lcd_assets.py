@@ -34,7 +34,7 @@ def countdown(minutes: int, seconds: int):
         while True:
             # to clear any lingering numbers
             mylcd.lcd_clear()
-            mylcd.lcd_display_string_pos(f"{minutes} : {seconds}", 2, 7)
+            mylcd.lcd_display_string_pos(f"{minutes:02} : {seconds:02}", 2, 7)
             time.sleep(1)
             seconds -= 1
             if seconds < 0:
