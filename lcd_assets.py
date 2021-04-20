@@ -30,11 +30,13 @@ def explode():
 
 def countdown(minutes: int, seconds: int):
     while True:
+        # to clear any lingering numbers
+        mylcd.lcd_clear()
         mylcd.lcd_display_string_pos(f"{minutes} : {seconds}", 2, 7)
         time.sleep(1)
         seconds -= 1
         if seconds <= 0:
-            if minutes <= 0:
+            if minutes < 0:
                 time.sleep(1)
                 explode()
             minutes -= 1
