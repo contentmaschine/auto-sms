@@ -14,6 +14,7 @@ def start_screen():
 
 def explode():
     try:
+        mylcd.lcd_clear()
         explode_rows = rows.copy()
         explode_rows.reverse()
         while True:
@@ -38,7 +39,6 @@ def countdown(minutes: int, seconds: int):
             seconds -= 1
             if seconds < 0:
                 if minutes <= 0:
-                    time.sleep(1)
                     explode()
                 minutes -= 1
                 seconds = 59
