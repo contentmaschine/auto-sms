@@ -25,11 +25,9 @@ def sms_reader():
         event = port.read(100)
         # port outputs bytes, regex needs string, commands need bytes
         event = event.decode("utf-8")
-        print(event)
         match_object = rgx_index.search(event)
         if match_object is not None:
             sms_index = match_object.group(1)
-            print("Received SMS at Index: " + sms_index)
             sms_index = str.encode(sms_index)
             receive_message(sms_index)
         time.sleep(0.1)
@@ -43,12 +41,9 @@ def receive_message(sms_index):
     time.sleep(0.3)
     sms = port.read(1000)
     sms = sms.decode("utf-8")
-    print("sms:")
-    print(sms)
     match_object = rgx_defuse.search(sms)
 
     if match_object is not None:
         game_state.sms_done = True
-        return True
     else:
         game_state.strike()

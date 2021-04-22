@@ -1,9 +1,8 @@
 from gpiozero import LED
 from signal import pause
 import concurrent.futures
-import time
-
 import lcd_assets
+
 
 strike_counter = 0
 wires_done = False
@@ -12,16 +11,16 @@ sms_done = False
 exploded = False
 
 def strike(strike_pins: tuple=(23, 24, 25)):
-    global strike_counter
-    strike_pin = strike_pins[strike_counter]
+    global strike_counter, exploded
+    if not sms_done:
+        strike_pin = strike_pins[strike_counter]
+        executor = concurrent.futures.ThreadPoolExecutor()
+        executor.submit(strike_led_on, strike_pin)
 
-    executor = concurrent.futures.ThreadPoolExecutor()
-    executor.submit(strike_led_on, strike_pin)
-
-    strike_counter += 1
-    if strike_counter > 2:
-        lcd_assets.explode()
-
+        strike_counter += 1
+        if strike_counter > 2:
+            exploded = True
+            lcd_assets.explode()
 
 def strike_led_on(strike_pin: int):
     strike_led = LED(strike_pin)

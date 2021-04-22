@@ -4,11 +4,14 @@ from gpiozero import RGBLED, Button
 from colorzero import Color
 
 
-#known bugs: buttons don't stop listening after success
-
 # for testing
 #from gpiozero.pins.mock import MockFactory, MockPWMPin
 #Device.pin_factory = MockFactory(pin_class=MockPWMPin)
+
+# cycle_max = how many colors need to be correctly processed until success
+# wait_time = how long nothing has to happen, for the pattern to replay
+cycle_max = 2
+wait_time = 7
 
 # RGBLED has three inputs
 red_pin = 11
@@ -23,25 +26,20 @@ green_button = Button(20)
 blue_button = Button(1)
 yellow_button = Button(16)
 buttons = [red_button, green_button, blue_button, yellow_button]
-
-# cycle_max = how many colors need to be correctly processed until success
-# wait_time = how long
-cycle_max = 2
-wait_time = 7
-# pattern list will store the colors seen by the player
 colors = ["red", "blue", "yellow", "green"]
+
+# pattern list will store the colors seen by the player
 pattern = []
 
 # extra rules from the manual, the chiffre changes depending on strike_count
 zero_strike_dict = {"red": blue_button, "blue": red_button, "green": yellow_button, "yellow": green_button}
 one_strike_dict = {"red": yellow_button, "blue": green_button, "green": blue_button, "yellow": red_button}
 two_strike_dict = {"red": green_button, "blue": red_button, "green": yellow_button, "yellow": blue_button}
-
 chiffre_list = [zero_strike_dict, one_strike_dict, two_strike_dict]
 
 cycles = 1
 
-# sends command to RGBLED every cycle
+# shows pattern
 def blink():
     for color in pattern:
         led.color = Color(color)
@@ -85,7 +83,7 @@ def simon_says():
             wrong_buttons = buttons.copy()
             wrong_buttons.remove(right_button)
 
-            # calls the strike function when of the 3 wrong buttons is pushed
+            # calls the strike function when one of the 3 wrong buttons is pushed
             for wrong_button in wrong_buttons:
                 wrong_button.when_activated = wrong_button_pressed
 
