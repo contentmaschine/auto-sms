@@ -1,6 +1,6 @@
 import RPi_I2C_driver
 import time
-
+import game_state
 
 rows = [0x80, 0xC0, 0x94, 0xD4]
 mylcd = RPi_I2C_driver.lcd()
@@ -11,28 +11,22 @@ def start_screen():
     mylcd.lcd_display_string_pos("KEEP RASPI", 2, 5)
     mylcd.lcd_display_string_pos("TALKING", 3, 6)
 
-
 def explode():
-    try:
-        mylcd.lcd_clear()
-        explode_rows = rows.copy()
-        explode_rows.reverse()
-        mylcd.lcd_display_string_pos("KABOOM", 2, 6)
-        while True:
-            for index, row in enumerate(explode_rows):
-                mylcd.lcd_load_custom_chars(shroom_data_list[index])
-                mylcd.lcd_write(row)
-                for i in range(5):
-                    mylcd.lcd_write_char(i)
-                time.sleep(0.15)
-                mylcd.lcd_clear()
-    except:
-        mylcd.lcd_clear()
-
+    explode_rows = rows.copy()
+    explode_rows.reverse()
+    mylcd.lcd_display_string_pos("KABOOM", 2, 7)
+    while True:
+        for index, row in enumerate(explode_rows):
+            mylcd.lcd_load_custom_chars(shroom_data_list[index])
+            mylcd.lcd_write(row)
+            for i in range(5):
+                mylcd.lcd_write_char(i)
+            time.sleep(0.15)
+            mylcd.lcd_clear()
 
 def countdown(minutes: int, seconds: int):
     try:
-        while True:
+        while not game_state.exploded:
             mylcd.lcd_display_string_pos(f"{minutes:02} : {seconds:02}", 2, 7)
             mylcd.lcd_load_custom_chars(hourglass_data_list[seconds % 3])
             mylcd.lcd_write(0xC0)
@@ -46,7 +40,6 @@ def countdown(minutes: int, seconds: int):
                 seconds = 59
     except:
         mylcd.lcd_clear()
-
 
 # custom chars
 

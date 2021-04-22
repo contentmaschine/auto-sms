@@ -9,7 +9,7 @@ import concurrent.futures, time
 
 # game starts with SimonSays and Wires active, which need to be solved to enable morse, which then enables sms defusing
 
-with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+with concurrent.futures.ThreadPoolExecutor() as executor:
     w = executor.submit(wires.wires)
     s = executor.submit(simon_says.simon_says)
 
