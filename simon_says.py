@@ -107,6 +107,9 @@ def simon_says():
             time.sleep(1)
             cycles += 1
 
+    # disable buttons again
+    for button in buttons:
+        button.when_activated = None
     game_state.simon_says_done = True
     game_state.success(19)
     return True
