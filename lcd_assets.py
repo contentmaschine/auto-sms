@@ -18,9 +18,10 @@ def explode():
     while True:
         for index, row in enumerate(explode_rows):
             mylcd.lcd_load_custom_chars(shroom_data_list[index])
-            mylcd.lcd_write(row)
+            #mylcd.lcd_write(row)
             for i in range(5):
-                mylcd.lcd_write_char(i)
+                #mylcd.lcd_write_char(i)
+                mylcd.lcd_display_string_pos(chr(i), index + 1, i)
             time.sleep(0.15)
             mylcd.lcd_clear()
 
