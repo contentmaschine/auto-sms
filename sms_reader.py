@@ -23,6 +23,7 @@ def sms_reader():
 
     while not game_state.sms_done:
         event = port.read(100)
+        print(event)
         # port outputs bytes, regex needs string, commands need bytes
         event = event.decode("utf-8")
         print(event)
