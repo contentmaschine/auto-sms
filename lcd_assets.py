@@ -14,7 +14,6 @@ def start_screen():
 def explode():
     explode_rows = rows.copy()
     explode_rows.reverse()
-    mylcd.lcd_display_string_pos("KABOOM", 2, 7)
     while True:
         for index, row in enumerate(explode_rows):
             mylcd.lcd_load_custom_chars(shroom_data_list[index])
@@ -27,21 +26,18 @@ def explode():
             mylcd.lcd_clear()
 
 def countdown(minutes: int, seconds: int):
-    try:
-        while not game_state.exploded:
-            mylcd.lcd_display_string_pos(f"{minutes:02} : {seconds:02}", 2, 7)
-            mylcd.lcd_load_custom_chars(hourglass_data_list[seconds % 3])
-            mylcd.lcd_write(0xC0)
-            mylcd.lcd_write_char(0)
-            time.sleep(1)
-            seconds -= 1
-            if seconds < 0:
-                if minutes <= 0:
-                    explode()
-                minutes -= 1
-                seconds = 59
-    except:
-        mylcd.lcd_clear()
+    while not game_state.exploded:
+        mylcd.lcd_display_string_pos(f"{minutes:02} : {seconds:02}", 2, 7)
+        mylcd.lcd_load_custom_chars(hourglass_data_list[seconds % 3])
+        mylcd.lcd_display_string_pos(chr(0), 2, 5)
+        mylcd.lcd_display_string_pos(chr(0), 2, 9)
+        time.sleep(1)
+        seconds -= 1
+        if seconds < 0:
+            if minutes <= 0:
+                explode()
+            minutes -= 1
+            seconds = 59
 
 # custom chars
 
