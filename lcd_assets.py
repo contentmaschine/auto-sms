@@ -18,12 +18,11 @@ def explode():
     while True:
         for index, row in enumerate(explode_rows):
             mylcd.lcd_load_custom_chars(shroom_data_list[index])
-            #mylcd.lcd_write(row)
             for i in range(5):
-                #mylcd.lcd_write_char(i)
-                # 4- index so that it starts from the bottom and goes up, i + 14 so that the second explosion is on the right side
+                mylcd.lcd_display_string_pos("KABOOM", 2, 7)
+                # 4- index so that it starts from the bottom and goes up, i + 15 so that the second explosion is on the right side
                 mylcd.lcd_display_string_pos(chr(i), 4 - index, i)
-                mylcd.lcd_display_string_pos(chr(i), 4 - index, i + 14)
+                mylcd.lcd_display_string_pos(chr(i), 4 - index, i + 15)
             time.sleep(0.15)
             mylcd.lcd_clear()
 
