@@ -13,7 +13,7 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
     w = executor.submit(wires.wires)
     s = executor.submit(simon_says.simon_says)
 
-    if s.result():
+    if s.result() and w.result():
         print("first stage check")
         # artistic pause
         time.sleep(1)
