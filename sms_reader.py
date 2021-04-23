@@ -25,6 +25,7 @@ def sms_reader():
         event = port.read(100)
         # port outputs bytes, regex needs string, commands need bytes
         event = event.decode("utf-8")
+        print(event)
         match_object = rgx_index.search(event)
         if match_object is not None:
             sms_index = match_object.group(1)
