@@ -1,3 +1,4 @@
+import game_state
 import morse_translator
 import concurrent.futures, time
 from gpiozero import LED
@@ -25,7 +26,7 @@ def string_to_led(message: str, pin_number: int):
     time_space = 0.8
     time_between = 0.2
 
-    while True:
+    while not game_state.sms_done:
         for symbol in morse_code:
             if symbol == ".":
                 led.on()
