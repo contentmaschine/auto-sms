@@ -21,6 +21,6 @@ with concurrent.futures.ThreadPoolExecutor() as executor:
         time.sleep(1)
         with concurrent.futures.ThreadPoolExecutor() as executor:
             executor.submit(morse.morse, {5: "SMS", 6: "FELIX", 26: "DEFUSE"})
-            executor.submit(sms_reader.sms_reader)
-            if game_state.sms_done:
+            sms_reader_result = executor.submit(sms_reader.sms_reader)
+            if sms_reader_result.result():
                 print("SUCCESS")

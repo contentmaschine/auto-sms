@@ -30,6 +30,7 @@ def sms_reader():
         if match_object is not None:
             sms_index = match_object.group(1)
             sms_index = str.encode(sms_index)
+            print(sms_index)
             receive_message(sms_index)
         time.sleep(0.1)
 
@@ -42,9 +43,11 @@ def receive_message(sms_index):
     time.sleep(0.3)
     sms = port.read(1000)
     sms = sms.decode("utf-8")
+    print(sms)
     match_object = rgx_defuse.search(sms)
 
     if match_object is not None:
         game_state.sms_done = True
+        return True
     else:
         game_state.strike()
