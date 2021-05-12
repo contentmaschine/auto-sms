@@ -12,6 +12,10 @@ def start_screen():
     mylcd.lcd_display_string_pos("KEEP RASPI", 2, 5)
     mylcd.lcd_display_string_pos("TALKING", 3, 6)
 
+def win_screen():
+    pass
+    mylcd.lcd_display_string_pos("WIN", 2, 5)
+
 def explode():
     explode_rows = rows.copy()
     explode_rows.reverse()
@@ -27,7 +31,9 @@ def explode():
             mylcd.lcd_clear()
 
 def countdown(minutes: int, seconds: int):
-    while not game_state.exploded:
+    mylcd.lcd_clear()
+    time.sleep(1)
+    while not game_state.exploded and not game_state.sms_done:
         mylcd.lcd_display_string_pos(f"{minutes:02} : {seconds:02}", 2, 7)
         mylcd.lcd_load_custom_chars(hourglass_data_list[seconds % 3])
         mylcd.lcd_display_string_pos(chr(0), 2, 5)

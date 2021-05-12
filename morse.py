@@ -8,8 +8,6 @@ from gpiozero import LED
 
 # starts n string_to_led functions, format is {pin : word}
 def morse(pins_and_words: dict):
-    if pins_and_words is None:
-        pins_and_words = {5: "S", 6: "O", 26: "S"}
     n = len(pins_and_words)
     executor = concurrent.futures.ThreadPoolExecutor(max_workers=n)
     for pin in pins_and_words:

@@ -1,4 +1,4 @@
-from gpiozero import LED
+from gpiozero import LED, Button
 from signal import pause
 import concurrent.futures
 import lcd_assets
@@ -9,6 +9,11 @@ wires_done = False
 simon_says_done = False
 sms_done = False
 exploded = False
+
+def start_game():
+    # press red and blue button to start game
+    Button(9).wait_for_active()
+    Button(11).wait_for_active()
 
 def strike(strike_pins: tuple=(23, 24, 25)):
     global strike_counter, exploded
