@@ -14,7 +14,7 @@ lcd_assets.start_screen()
 #game_state.start_game()
 
 with concurrent.futures.ThreadPoolExecutor() as executor:
-    executor.submit(lcd_assets.countdown(5, 0))
+    #executor.submit(lcd_assets.countdown(5, 0))
     wires = executor.submit(wires.wires)
     simon_says = executor.submit(simon_says.simon_says)
 
