@@ -12,8 +12,8 @@ exploded = False
 
 def start_game():
     # press red and blue button to start game
-    simon_says.blue_button.when_activated()
-    simon_says.red_button.when_activated()
+    simon_says.blue_button.wait_for_active()
+    simon_says.red_button.wait_for_active()
 
 
 def strike(strike_pins: tuple=(23, 24, 25)):
