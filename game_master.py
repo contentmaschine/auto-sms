@@ -22,7 +22,7 @@ with concurrent.futures.ProcessPoolExecutor(max_workers=3) as executor:
     if wires.result() and simon_says.result():
         # artistic pause
         time.sleep(1)
-        with concurrent.futures.ProcessPoolExecutor(max_workers=2) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
             executor.submit(morse.morse, {5: "SMS", 6: "FELIX", 26: "DEFUSE"})
             sms_reader = executor.submit(sms_reader.sms_reader)
             if sms_reader.result():
