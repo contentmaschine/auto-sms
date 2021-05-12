@@ -33,6 +33,7 @@ def sms_reader():
             print(sms_index)
             receive_message(sms_index)
         time.sleep(0.1)
+    return True
 
 def receive_message(sms_index):
     # text mode
@@ -48,6 +49,5 @@ def receive_message(sms_index):
 
     if match_object is not None:
         game_state.sms_done = True
-        return True
     else:
         game_state.strike()
