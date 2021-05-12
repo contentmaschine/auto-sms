@@ -11,8 +11,8 @@ import lcd_assets
 lcd_assets.start_screen()
 
 # waits for red and blue button to be pushed
-game_state.start_game()
-print("hello")
+#game_state.start_game()
+
 with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.submit(lcd_assets.countdown(5, 0))
     wires = executor.submit(wires.wires)
