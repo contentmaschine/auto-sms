@@ -1,5 +1,7 @@
 import RPi_I2C_driver
 import time
+
+import game_master
 import game_state
 
 
@@ -19,6 +21,7 @@ def win_screen():
 
 def explode():
     game_state.exploded = True
+    game_master.countdown.cancel()
     explode_rows = rows.copy()
     explode_rows.reverse()
     while True:
@@ -34,8 +37,7 @@ def explode():
 
 def countdown(minutes: int, seconds: int):
     mylcd.lcd_clear()
-    while game_state.exploded == False and game_state.sms_done == False:
-        print("still going")
+    while True:
         time.sleep(1)
         mylcd.lcd_display_string_pos(f"{minutes:02} : {seconds:02}", 2, 7)
         mylcd.lcd_load_custom_chars(hourglass_data_list[seconds % 3])
