@@ -14,10 +14,11 @@ try:
     # waits for red and blue button to be pushed
     game_state.start_game()
 
-    process_executor = concurrent.futures.ProcessPoolExecutor()
-    process_executor.submit(lcd_assets.countdown, 5, 0)
-
     thread_executor = concurrent.futures.ThreadPoolExecutor()
+    process_executor = concurrent.futures.ProcessPoolExecutor()
+    thread_executor.submit(lcd_assets.countdown, 5, 0)
+
+
     wires = thread_executor.submit(wires.wires)
     simon_says = thread_executor.submit(simon_says.simon_says)
 
