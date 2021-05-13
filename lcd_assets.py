@@ -32,21 +32,19 @@ def explode():
             time.sleep(0.15)
 
 def countdown(minutes: int, seconds: int):
-     pass
-#     mylcd.lcd_clear()
-#     time.sleep(1)
-#     while not game_state.exploded and not game_state.sms_done:
-#         mylcd.lcd_display_string_pos(f"{minutes:02} : {seconds:02}", 2, 7)
-#         mylcd.lcd_load_custom_chars(hourglass_data_list[seconds % 3])
-#         mylcd.lcd_display_string_pos(chr(0), 2, 5)
-#         mylcd.lcd_display_string_pos(chr(0), 2, 15)
-#         time.sleep(1)
-#         seconds -= 1
-#         if seconds < 0:
-#             if minutes <= 0:
-#                 explode()
-#             minutes -= 1
-#             seconds = 59
+    while not game_state.exploded and not game_state.sms_done:
+        mylcd.lcd_clear()
+        time.sleep(1)
+        mylcd.lcd_display_string_pos(f"{minutes:02} : {seconds:02}", 2, 7)
+        mylcd.lcd_load_custom_chars(hourglass_data_list[seconds % 3])
+        mylcd.lcd_display_string_pos(chr(0), 2, 5)
+        mylcd.lcd_display_string_pos(chr(0), 2, 15)
+        seconds -= 1
+        if seconds < 0:
+            if minutes <= 0:
+                explode()
+            minutes -= 1
+            seconds = 59
 
 # custom chars
 

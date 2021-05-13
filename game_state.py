@@ -10,6 +10,7 @@ simon_says_done = False
 sms_done = False
 exploded = False
 
+
 def start_game():
     # press red and blue button to start game
     simon_says.blue_button.wait_for_active()
@@ -17,7 +18,7 @@ def start_game():
 
 
 def strike(strike_pins: tuple=(23, 24, 25)):
-    global strike_counter, exploded
+    global strike_counter, exploded, sms_done
     if not sms_done:
         strike_pin = strike_pins[strike_counter]
         executor = concurrent.futures.ThreadPoolExecutor()
