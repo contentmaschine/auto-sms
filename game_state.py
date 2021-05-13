@@ -26,7 +26,6 @@ def strike(strike_pins: tuple=(23, 24, 25)):
 
         strike_counter += 1
         if strike_counter > 2:
-            exploded = True
             lcd_assets.explode()
 
 def strike_led_on(strike_pin: int):
