@@ -31,7 +31,7 @@ def explode():
                 mylcd.lcd_display_string_pos(chr(i), 4 - index, i + 15)
             time.sleep(0.15)
 
- def countdown(minutes: int, seconds: int):
+def countdown(minutes: int, seconds: int):
      pass
 #     mylcd.lcd_clear()
 #     time.sleep(1)
