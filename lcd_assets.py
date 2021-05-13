@@ -1,7 +1,6 @@
 import RPi_I2C_driver
 import time
 
-import game_master
 import game_state
 
 
@@ -21,7 +20,7 @@ def win_screen():
 
 def explode():
     game_state.exploded = True
-    game_master.countdown.cancel()
+    #game_master.countdown.cancel()
     explode_rows = rows.copy()
     explode_rows.reverse()
     while True:
