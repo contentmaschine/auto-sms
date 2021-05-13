@@ -34,7 +34,7 @@ def explode():
 
 def countdown(minutes: int, seconds: int):
     mylcd.lcd_clear()
-    while not game_state.exploded and not game_state.sms_done:
+    while game_state.exploded == False and game_state.sms_done == False:
         print("still going")
         time.sleep(1)
         mylcd.lcd_display_string_pos(f"{minutes:02} : {seconds:02}", 2, 7)

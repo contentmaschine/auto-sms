@@ -23,7 +23,6 @@ def strike(strike_pins: tuple=(23, 24, 25)):
         strike_pin = strike_pins[strike_counter]
         executor = concurrent.futures.ThreadPoolExecutor()
         executor.submit(strike_led_on, strike_pin)
-
         strike_counter += 1
         if strike_counter > 2:
             lcd_assets.explode()
