@@ -33,8 +33,8 @@ def explode():
             time.sleep(0.15)
 
 def countdown(minutes: int, seconds: int):
+    mylcd.lcd_clear()
     while not game_state.exploded and not game_state.sms_done:
-        mylcd.lcd_clear()
         time.sleep(1)
         mylcd.lcd_display_string_pos(f"{minutes:02} : {seconds:02}", 2, 7)
         mylcd.lcd_load_custom_chars(hourglass_data_list[seconds % 3])
