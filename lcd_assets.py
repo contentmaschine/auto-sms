@@ -13,6 +13,7 @@ def start_screen():
     mylcd.lcd_display_string_pos("TALKING", 3, 6)
 
 def win_screen():
+    mylcd.lcd_clear()
     pass
     mylcd.lcd_display_string_pos("WIN", 2, 5)
 
@@ -21,6 +22,7 @@ def explode():
     explode_rows.reverse()
     while True:
         for index, row in enumerate(explode_rows):
+            mylcd.lcd_clear()
             mylcd.lcd_load_custom_chars(shroom_data_list[index])
             for i in range(5):
                 mylcd.lcd_display_string_pos("KABOOM", 2, 7)
@@ -28,12 +30,11 @@ def explode():
                 mylcd.lcd_display_string_pos(chr(i), 4 - index, i)
                 mylcd.lcd_display_string_pos(chr(i), 4 - index, i + 15)
             time.sleep(0.15)
-            mylcd.lcd_clear()
 
 def countdown(minutes: int, seconds: int):
     mylcd.lcd_clear()
     time.sleep(1)
-    while not game_state.exploded and not game_state.sms_done:
+    while not game_state.exploded or not game_state.sms_done:
         mylcd.lcd_display_string_pos(f"{minutes:02} : {seconds:02}", 2, 7)
         mylcd.lcd_load_custom_chars(hourglass_data_list[seconds % 3])
         mylcd.lcd_display_string_pos(chr(0), 2, 5)

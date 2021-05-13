@@ -13,19 +13,18 @@ lcd_assets.start_screen()
 # waits for red and blue button to be pushed
 game_state.start_game()
 
-with concurrent.futures.ProcessPoolExecutor() as executor:
-    executor.submit(lcd_assets.countdown, 5, 0)
+process_executor = concurrent.futures.ProcessPoolExecutor()
+process_executor.submit(lcd_assets.countdown, 5, 0)
 
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        wires = executor.submit(wires.wires)
-        simon_says = executor.submit(simon_says.simon_says)
+thread_executor = concurrent.futures.ThreadPoolExecutor()
+wires = thread_executor.submit(wires.wires)
+simon_says = thread_executor.submit(simon_says.simon_says)
 
-    # both threads return True, when done correctly
-        if wires.result() and simon_says.result():
-            # artistic pause
-            time.sleep(1)
-            with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
-                executor.submit(morse.morse, {5: "SMS", 6: "FELIX", 26: "DEFUSE"})
-                sms_reader = executor.submit(sms_reader.sms_reader)
-                if sms_reader.result():
-                    lcd_assets.win_screen()
+# waits for both games to be finished
+if wires.result() and simon_says.result():
+    # artistic pause
+    time.sleep(1)
+    thread_executor.submit(morse.morse, {5: "SMS", 6: "FELIX", 26: "DEFUSE"})
+    sms_reader = thread_executor.submit(sms_reader.sms_reader)
+    if sms_reader.result():
+        lcd_assets.win_screen()
