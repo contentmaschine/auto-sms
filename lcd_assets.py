@@ -1,14 +1,12 @@
 import RPi_I2C_driver
-import time
-
-import game_master
-import game_state
-import simon_says
+import multiprocessing, time
+import game_state, simon_says
 
 rows = [0x80, 0xC0, 0x94, 0xD4]
 mylcd = RPi_I2C_driver.lcd()
 
 # functions
+
 
 def start_screen():
     mylcd.lcd_display_string_pos("KEEP RASPI", 2, 5)
@@ -16,14 +14,16 @@ def start_screen():
     simon_says.blue_button.wait_for_active()
     simon_says.red_button.wait_for_active()
     mylcd.lcd_clear()
+    countdown_process.start()
+    return countdown_process
 
-def win_screen():
+def win_screen(countdown_process):
+    countdown_process.shutdown()
     mylcd.lcd_clear()
     mylcd.lcd_display_string_pos("WIN", 2, 5)
 
-def explode():
-    game_state.exploded = True
-    game_master.countdown.cancel()
+def explode(countdown_process):
+    countdown_process.shutdown()
     explode_rows = rows.copy()
     explode_rows.reverse()
     while True:
@@ -52,6 +52,7 @@ def countdown(minutes: int, seconds: int):
             minutes -= 1
             seconds = 59
 
+countdown_process = multiprocessing.Process(target=countdown, args=(5, 0))
 # custom chars
 
 # shroom

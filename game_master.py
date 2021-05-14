@@ -1,6 +1,6 @@
-import game_state, simon_says, wires, sms_reader, morse
+import game_state, simon_says, wires, sms_reader, morse, lcd_assets
 import concurrent.futures, time
-import lcd_assets
+import multiprocessing
 
 # TODO:
 #  success screen
@@ -8,10 +8,7 @@ import lcd_assets
 #  Board mehr conveniently stecken
 #  Simon Says Buttons anmalen
 
-lcd_assets.start_screen()
-
-process_executor = concurrent.futures.ProcessPoolExecutor()
-countdown = process_executor.submit(lcd_assets.countdown, 5, 0)
+countdown_process = lcd_assets.start_screen()
 
 thread_executor = concurrent.futures.ThreadPoolExecutor()
 wires = thread_executor.submit(wires.wires)
@@ -24,4 +21,4 @@ if wires.result() and simon_says.result():
     thread_executor.submit(morse.morse, {5: "SMS", 6: "FELIX", 26: "DEFUSE"})
     sms_reader = thread_executor.submit(sms_reader.sms_reader)
     if sms_reader.result():
-        lcd_assets.win_screen()
+        lcd_assets.win_screen(countdown_process)

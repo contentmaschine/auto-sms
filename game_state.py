@@ -17,7 +17,7 @@ def strike(strike_pins: tuple=(23, 24, 25)):
         executor.submit(strike_led_on, strike_pin)
         strike_counter += 1
         if strike_counter > 2:
-            lcd_assets.explode()
+            lcd_assets.explode(lcd_assets.countdown_process)
 
 def strike_led_on(strike_pin: int):
     strike_led = LED(strike_pin)
