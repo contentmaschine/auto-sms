@@ -1,7 +1,7 @@
-import simon_says
 import RPi_I2C_driver
 import time
-import concurrent.futures
+
+import game_master
 import game_state
 
 
@@ -10,31 +10,18 @@ mylcd = RPi_I2C_driver.lcd()
 
 # functions
 
-def countdown(minutes: int, seconds: int):
-    mylcd.lcd_clear()
-    while True:
-        mylcd.lcd_display_string_pos(f"{minutes:02} : {seconds:02}", 2, 7)
-        mylcd.lcd_load_custom_chars(hourglass_data_list[seconds % 3])
-        mylcd.lcd_display_string_pos(chr(0), 2, 5)
-        mylcd.lcd_display_string_pos(chr(0), 2, 15)
-        time.sleep(1)
-        seconds -= 1
-        if seconds < 0:
-            if minutes <= 0:
-                explode()
-            minutes -= 1
-            seconds = 59
-
-def start_screen(countdown=countdown):
+def start_screen():
     mylcd.lcd_display_string_pos("KEEP RASPI", 2, 5)
     mylcd.lcd_display_string_pos("TALKING", 3, 6)
-    simon_says.blue_button.wait_for_active()
-    simon_says.red_button.wait_for_active()
-    process_executor = concurrent.futures.ProcessPoolExecutor()
-    future_object = process_executor.submit(countdown, 5, 0)
-    return future_object
 
-def explode(future_object):
+def win_screen():
+    mylcd.lcd_clear()
+    pass
+    mylcd.lcd_display_string_pos("WIN", 2, 5)
+
+def explode():
+    game_state.exploded = True
+    game_master.countdown.cancel()
     explode_rows = rows.copy()
     explode_rows.reverse()
     while True:
@@ -48,9 +35,20 @@ def explode(future_object):
                 mylcd.lcd_display_string_pos(chr(i), 4 - index, i + 15)
             time.sleep(0.15)
 
-def win_screen():
+def countdown(minutes: int, seconds: int):
     mylcd.lcd_clear()
-    mylcd.lcd_display_string_pos("WIN", 2, 5)
+    while True:
+        time.sleep(1)
+        mylcd.lcd_display_string_pos(f"{minutes:02} : {seconds:02}", 2, 7)
+        mylcd.lcd_load_custom_chars(hourglass_data_list[seconds % 3])
+        mylcd.lcd_display_string_pos(chr(0), 2, 5)
+        mylcd.lcd_display_string_pos(chr(0), 2, 15)
+        seconds -= 1
+        if seconds < 0:
+            if minutes <= 0:
+                explode()
+            minutes -= 1
+            seconds = 59
 
 # custom chars
 
