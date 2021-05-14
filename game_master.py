@@ -10,9 +10,6 @@ import lcd_assets
 
 lcd_assets.start_screen()
 
-# waits for red and blue button to be pushed
-game_state.start_game()
-
 process_executor = concurrent.futures.ProcessPoolExecutor()
 countdown = process_executor.submit(lcd_assets.countdown, 5, 0)
 

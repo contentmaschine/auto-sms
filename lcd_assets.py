@@ -3,7 +3,7 @@ import time
 
 import game_master
 import game_state
-
+import simon_says
 
 rows = [0x80, 0xC0, 0x94, 0xD4]
 mylcd = RPi_I2C_driver.lcd()
@@ -13,10 +13,12 @@ mylcd = RPi_I2C_driver.lcd()
 def start_screen():
     mylcd.lcd_display_string_pos("KEEP RASPI", 2, 5)
     mylcd.lcd_display_string_pos("TALKING", 3, 6)
+    simon_says.blue_button.wait_for_active()
+    simon_says.red_button.wait_for_active()
+    mylcd.lcd_clear()
 
 def win_screen():
     mylcd.lcd_clear()
-    pass
     mylcd.lcd_display_string_pos("WIN", 2, 5)
 
 def explode():
