@@ -1,6 +1,8 @@
 from gpiozero import LED
 from signal import pause
 import concurrent.futures
+
+import game_master
 import lcd_assets
 
 strike_counter = 0
@@ -17,8 +19,7 @@ def strike(strike_pins: tuple=(23, 24, 25)):
         executor.submit(strike_led_on, strike_pin)
         strike_counter += 1
         if strike_counter > 2:
-            pass
-            #lcd_assets.explode(game_master.future_object)
+            lcd_assets.explode(game_master.future_object)
 
 def strike_led_on(strike_pin: int):
     strike_led = LED(strike_pin)
