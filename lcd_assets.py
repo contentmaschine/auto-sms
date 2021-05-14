@@ -18,12 +18,12 @@ def start_screen():
     return countdown_process
 
 def win_screen(countdown_process):
-    countdown_process.shutdown()
+    countdown_process.terminate()
     mylcd.lcd_clear()
     mylcd.lcd_display_string_pos("WIN", 2, 5)
 
 def explode(countdown_process):
-    countdown_process.shutdown()
+    countdown_process.terminate()
     explode_rows = rows.copy()
     explode_rows.reverse()
     while True:
