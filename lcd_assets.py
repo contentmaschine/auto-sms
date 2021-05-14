@@ -38,11 +38,11 @@ def explode():
 def countdown(minutes: int, seconds: int):
     mylcd.lcd_clear()
     while True:
-        time.sleep(1)
         mylcd.lcd_display_string_pos(f"{minutes:02} : {seconds:02}", 2, 7)
         mylcd.lcd_load_custom_chars(hourglass_data_list[seconds % 3])
         mylcd.lcd_display_string_pos(chr(0), 2, 5)
         mylcd.lcd_display_string_pos(chr(0), 2, 15)
+        time.sleep(1)
         seconds -= 1
         if seconds < 0:
             if minutes <= 0:
