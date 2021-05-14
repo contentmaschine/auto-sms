@@ -21,6 +21,7 @@ if wires.result() and simon_says.result():
     time.sleep(1)
     thread_executor.submit(morse.morse, {5: "SMS", 6: "FELIX", 26: "DEFUSE"})
     sms_reader = thread_executor.submit(sms_reader.sms_reader)
-    if sms_reader.result():
+    #if sms_reader.result():
+    if True:
         future_object.cancel()
         lcd_assets.win_screen()
