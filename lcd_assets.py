@@ -1,6 +1,7 @@
+import simon_says
 import RPi_I2C_driver
 import time
-
+import concurrent.futures
 import game_state
 
 
@@ -8,31 +9,6 @@ rows = [0x80, 0xC0, 0x94, 0xD4]
 mylcd = RPi_I2C_driver.lcd()
 
 # functions
-
-def start_screen():
-    mylcd.lcd_display_string_pos("KEEP RASPI", 2, 5)
-    mylcd.lcd_display_string_pos("TALKING", 3, 6)
-
-def win_screen():
-    mylcd.lcd_clear()
-    pass
-    mylcd.lcd_display_string_pos("WIN", 2, 5)
-
-def explode():
-    game_state.exploded = True
-    #game_master.countdown.cancel()
-    explode_rows = rows.copy()
-    explode_rows.reverse()
-    while True:
-        for index, row in enumerate(explode_rows):
-            mylcd.lcd_clear()
-            mylcd.lcd_load_custom_chars(shroom_data_list[index])
-            for i in range(5):
-                mylcd.lcd_display_string_pos("KABOOM", 2, 7)
-                # 4- index so that it starts from the bottom and goes up, i + 15 so that the second explosion is on the right side
-                mylcd.lcd_display_string_pos(chr(i), 4 - index, i)
-                mylcd.lcd_display_string_pos(chr(i), 4 - index, i + 15)
-            time.sleep(0.15)
 
 def countdown(minutes: int, seconds: int):
     mylcd.lcd_clear()
@@ -48,6 +24,33 @@ def countdown(minutes: int, seconds: int):
                 explode()
             minutes -= 1
             seconds = 59
+
+def start_screen(countdown=countdown):
+    mylcd.lcd_display_string_pos("KEEP RASPI", 2, 5)
+    mylcd.lcd_display_string_pos("TALKING", 3, 6)
+    simon_says.blue_button.wait_for_active()
+    simon_says.red_button.wait_for_active()
+    process_executor = concurrent.futures.ProcessPoolExecutor()
+    future_object = process_executor.submit(countdown, 5, 0)
+    return future_object
+
+def explode(future_object):
+    explode_rows = rows.copy()
+    explode_rows.reverse()
+    while True:
+        for index, row in enumerate(explode_rows):
+            mylcd.lcd_clear()
+            mylcd.lcd_load_custom_chars(shroom_data_list[index])
+            for i in range(5):
+                mylcd.lcd_display_string_pos("KABOOM", 2, 7)
+                # 4- index so that it starts from the bottom and goes up, i + 15 so that the second explosion is on the right side
+                mylcd.lcd_display_string_pos(chr(i), 4 - index, i)
+                mylcd.lcd_display_string_pos(chr(i), 4 - index, i + 15)
+            time.sleep(0.15)
+
+def win_screen():
+    mylcd.lcd_clear()
+    mylcd.lcd_display_string_pos("WIN", 2, 5)
 
 # custom chars
 

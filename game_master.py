@@ -9,13 +9,7 @@ import lcd_assets
 #  Simon Says Buttons anmalen
 
 
-lcd_assets.start_screen()
-
-# waits for red and blue button to be pushed
-game_state.start_game()
-
-process_executor = concurrent.futures.ProcessPoolExecutor()
-countdown = process_executor.submit(lcd_assets.countdown, 5, 0)
+future_object = lcd_assets.start_screen()
 
 thread_executor = concurrent.futures.ThreadPoolExecutor()
 wires = thread_executor.submit(wires.wires)
@@ -28,4 +22,5 @@ if wires.result() and simon_says.result():
     thread_executor.submit(morse.morse, {5: "SMS", 6: "FELIX", 26: "DEFUSE"})
     sms_reader = thread_executor.submit(sms_reader.sms_reader)
     if sms_reader.result():
+        future_object.cancel()
         lcd_assets.win_screen()
