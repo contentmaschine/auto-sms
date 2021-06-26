@@ -20,25 +20,6 @@ def start_screen():
 def win_screen(countdown_process):
     countdown_process.terminate()
     mylcd.lcd_clear()
-    pos_one = [1, 7, 13]
-    pos_two = [4, 10, 16]
-    x = 0
-    while True:
-        for pos in pos_one:
-            mylcd.lcd_display_string_pos("WIN", x % 2 + 1, pos)
-            mylcd.lcd_display_string_pos("WIN", x % 2 + 3, pos)
-        x += 1
-        time.sleep(0.5)
-        mylcd.lcd_clear()
-        for pos in pos_two:
-            mylcd.lcd_display_string_pos("WIN", x % 2 + 1, pos)
-            mylcd.lcd_display_string_pos("WIN", x % 2 + 3, pos)
-        x += 2
-        time.sleep(5)
-
-
-def test_win_screen():
-    mylcd.lcd_clear()
     positions = [1, 4, 7, 10, 13, 16]
     x = 0
     while True:
@@ -46,8 +27,6 @@ def test_win_screen():
             mylcd.lcd_display_string_pos("WIN", x % 2 + 1, pos)
             mylcd.lcd_display_string_pos("WIN", x % 2 + 3, pos)
         x += 1
-
-
 
         time.sleep(0.5)
         mylcd.lcd_clear()
