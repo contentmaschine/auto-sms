@@ -35,6 +35,23 @@ def win_screen(countdown_process):
         time.sleep(1)
 
 
+def test_win_screen():
+    mylcd.lcd_clear()
+    pos_one = [1, 7, 13]
+    pos_two = [4, 10, 16]
+    x = 0
+    while True:
+        for pos in pos_one:
+            mylcd.lcd_display_string_pos("WIN", x % 2 + 1, pos)
+            mylcd.lcd_display_string_pos("WIN", x % 2 + 3, pos)
+        x += 1
+        for pos in pos_two:
+            mylcd.lcd_display_string_pos("WIN", x % 2 + 1, pos)
+            mylcd.lcd_display_string_pos("WIN", x % 2 + 3, pos)
+        x += 2
+        time.sleep(1)
+
+
 def explode(countdown_process):
     countdown_process.terminate()
     explode_rows = rows.copy()
