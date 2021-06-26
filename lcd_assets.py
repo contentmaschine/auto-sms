@@ -28,6 +28,7 @@ def win_screen(countdown_process):
             mylcd.lcd_display_string_pos("WIN", x % 2 + 1, pos)
             mylcd.lcd_display_string_pos("WIN", x % 2 + 3, pos)
         x += 1
+        mylcd.lcd_clear()
         for pos in pos_two:
             mylcd.lcd_display_string_pos("WIN", x % 2 + 1, pos)
             mylcd.lcd_display_string_pos("WIN", x % 2 + 3, pos)
@@ -45,6 +46,7 @@ def test_win_screen():
             mylcd.lcd_display_string_pos("WIN", x % 2 + 1, pos)
             mylcd.lcd_display_string_pos("WIN", x % 2 + 3, pos)
         x += 1
+        mylcd.lcd_clear()
         for pos in pos_two:
             mylcd.lcd_display_string_pos("WIN", x % 2 + 1, pos)
             mylcd.lcd_display_string_pos("WIN", x % 2 + 3, pos)
