@@ -10,7 +10,7 @@ from colorzero import Color
 
 # cycle_max = how many colors need to be correctly processed until success
 # wait_time = how long nothing has to happen, for the pattern to replay
-cycle_max = 2
+cycle_max = 5
 wait_time = 7
 
 # RGBLED has three inputs
