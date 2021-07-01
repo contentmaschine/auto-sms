@@ -2,6 +2,7 @@ from gpiozero import LED
 from signal import pause
 import concurrent.futures
 import lcd_assets
+import time
 
 strike_counter = 0
 wires_done = False
@@ -18,6 +19,8 @@ def strike(strike_pins: tuple=(23, 24, 25)):
         strike_counter += 1
         if strike_counter > 2:
             lcd_assets.explode(lcd_assets.countdown_process)
+        # to prevent immediate 3 strikes, not elegant but what can you do
+        time.sleep(0.25)
 
 def strike_led_on(strike_pin: int):
     strike_led = LED(strike_pin)
