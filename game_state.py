@@ -20,7 +20,7 @@ def strike(strike_pins: tuple=(23, 24, 25)):
         if strike_counter > 2:
             lcd_assets.explode(lcd_assets.countdown_process)
         # to prevent immediate 3 strikes, not elegant but what can you do
-        time.sleep(0.25)
+        time.sleep(0.75)
 
 def strike_led_on(strike_pin: int):
     strike_led = LED(strike_pin)
