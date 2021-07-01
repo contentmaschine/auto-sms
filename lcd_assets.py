@@ -32,8 +32,9 @@ def win_screen(countdown_process):
         mylcd.lcd_clear()
 
 
-def explode(countdown_process):
-    countdown_process.terminate()
+def explode(countdown_process=None):
+    if countdown_process is not None:
+        countdown_process.terminate()
     explode_rows = rows.copy()
     explode_rows.reverse()
     while True:
